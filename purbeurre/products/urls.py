@@ -1,19 +1,20 @@
 from django.urls import path
+from django.views.generic import TemplateView
 
 from . import views
 
-# urlpatterns = [
-#     path('', views.index, name="index"),
-#     path('results/', views.results, name="results"),
-#     path('favorites/', views.favorites, name="favorites"),
-# ]
-
+app_name = "products"
 
 urlpatterns = [
     # ex: /products/
-    path('', views.index, name='index'),
-    # ex: /products/5/
+    path('', TemplateView.as_view(template_name='products/home.html'), name='home'),
+    # ex: products/index/)
+    path('index/', views.index, name='index'),
+    # # ex: /products/5/
     path('<int:product_id>/', views.result, name='result'),
-    # ex: /products/5/details/
-    path('<int:product_id>/details/', views.details, name='details'),
+    # ex: /products/5/detail/
+    path('<int:product_id>/detail/', views.detail, name='detail'),
 ]
+
+
+# path('', views.index, name='index'),

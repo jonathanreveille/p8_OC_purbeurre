@@ -1,6 +1,6 @@
 from django.db import models
 
-
+# Create your models here.
 class Category(models.Model):
     """table category for products"""
     category_name = models.CharField(max_length=255)
@@ -46,7 +46,13 @@ class Product(models.Model):
     prod_image_url = models.URLField(max_length=200)
 
     def __str__(self):
-        return f"{self.prod_name}, nutriscore: {self.prod_nutrition_grade_fr}"    
+        return f"{self.prod_name}, nutriscore: {self.prod_nutrition_grade_fr}"
+
+    def show_healthy_products(self):
+        """ retrieve healthier products from bdd
+        from user's query"""
+        return Product.objects.filter(prod_category=self.prod_category,
+        prod_nutrition_grade_fr__lt=self.prod_nutrition_grade_fr)
 
 
 class Favorite(models.Model):
@@ -72,4 +78,10 @@ class Favorite(models.Model):
         return f"new:{self.substitute}, old:{self.substituted}"
 
 
-# Create your models here.
+class Searches(models.Model):
+    searched_product = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"Product searched : {self.searched_products}."
+
+
