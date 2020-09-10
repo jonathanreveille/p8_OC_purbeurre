@@ -35,7 +35,7 @@
 
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ml-auto my-2 my-lg-0">
-
+                            <li class="fas fa-carrot"><a class="nav-link js-scroll-trigger" href="#results"></a></li>
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#results">Founders</a></li>
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Connexion</a></li>
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Mes aliments</a></li>
@@ -48,38 +48,38 @@
 
         {% block header %}
         <!-- Masthead-->
-        <header class="masthead">
-            <div class="container h-100">
-                <div class="row h-100 align-items-center justify-content-center text-center">
-                    <div class="col-lg-10 align-self-end">
-                        <h1 class="text-uppercase text-white font-weight-bold">Du gras, oui, mais de qualité</h1>
-                        <hr class="divider my-4" />
-                    </div>
+            <header class="masthead">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center justify-content-center text-center">
+                        <div class="col-lg-10 align-self-end">
+                            <h1 class="text-uppercase text-white font-weight-bold">Du gras, oui, mais de qualité</h1>
+                            <hr class="divider my-4" />
+                        </div>
 
-                    <div class="col-lg-8 align-self-baseline">
-                        <h2>Trouver un produit de substitution pour ceux que vous mangez tous les jours </h2>
-                        <br><br><br>
+                        <div class="col-lg-8 align-self-baseline">
+                            <h2>Trouver un produit de substitution pour ceux que vous mangez tous les jours </h2>
+                            <br><br><br>
 
-                           {% comment %} <form action="{% url 'products:search' %}" method='post'> {% endcomment %}
-                           <form method='post' action="/search/">
+                        <form method="get">
+                            <div class="form-group">
                                 {% csrf_token %}
-                                <label for="search"> >>> </label>
-                                <input id="search" type="text" name="product_name">
-                                <input type="submit" value="Recherche">
-                            </form>
-
-                    <br><br><br>
+                                <label for="product_search_box"></label>
+                                <input type="text" class="form-control" id="product_search" name="search" placeholder="Recherche d'un produit...">
+                            <br/>
+                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                            </div>
+                        </form>                  
+                        </div>
                     </div>
-
-                </div>  
-            </div>
-        </header>
+                </div>
+            </header>
         {% endblock header %}
 
 
         {% block content %}
         <!-- About-->
         {% endblock content %}
+
 
         {% block contact %}
         <!--Contact-->
