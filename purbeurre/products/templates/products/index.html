@@ -12,3 +12,9 @@
 {% else %}
     <p>No products are yet available.</p>
 {% endif %}
+
+    <form action="search/" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Lookup">
+    </form>

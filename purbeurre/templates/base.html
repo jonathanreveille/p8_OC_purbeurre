@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -34,21 +35,6 @@
 
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                        
-                            {% comment %} <form action="{% url 'products:result' product.id %}" method="post"> {% endcomment %}
-                            
-                            <form method='get'>
-                            {% csrf_token %}
-                            
-                            <label for="search"> >>> </label>
-                                <input id="search" type="text" name="search">
-                                <input type="submit" value="Lookup">
-                            </form>
-
-                            {% comment %} 
-                            Will add later block if user is authentificated or else to change with nav buttons (login)
-                            logout, favorites, contact
-                            {% endcomment %}
 
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#results">Founders</a></li>
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Connexion</a></li>
@@ -73,27 +59,14 @@
                     <div class="col-lg-8 align-self-baseline">
                         <h2>Trouver un produit de substitution pour ceux que vous mangez tous les jours </h2>
                         <br><br><br>
-            
-                             
-                            <form method="post">
+
+                           {% comment %} <form action="{% url 'products:search' %}" method='post'> {% endcomment %}
+                           <form method='post' action="/search/">
+                                {% csrf_token %}
                                 <label for="search"> >>> </label>
-                                <input id="search" type="text" name="search">
-                                <input type="submit" value="chercher">
+                                <input id="search" type="text" name="product_name">
+                                <input type="submit" value="Recherche">
                             </form>
-
-                        {% comment %} <form method="get" class="product_search">{% csrf_token %}
-                            {{ form.as_p }}
-                            <button type="submit" value="go" class="save btn btn-default">
-                        </form> {% endcomment %}
-
-                    {% comment %} <form id="user-text-form">
-                        <p class="text-white-75 font-weight-light mb-5">
-                            <label for="userText"></label>
-                            <input type="text" id="userText" class="input--usertext" name="userText" placeholder="Insérez produit"
-                            max_length=255 size=auto autofocus>
-                            <input type="submit" value="Chercher">
-                        </p>
-                    </form>  {% endcomment %}
 
                     <br><br><br>
                     </div>

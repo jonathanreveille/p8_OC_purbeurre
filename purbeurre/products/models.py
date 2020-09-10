@@ -78,10 +78,3 @@ class Favorite(models.Model):
         return f"new:{self.substitute}, old:{self.substituted}"
 
 
-class Searches(models.Model):
-    searched_product = models.CharField(max_length=255)
-
-    def __str__(self):
-        return f"Product searched : {self.searched_products}."
-
-

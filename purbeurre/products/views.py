@@ -4,11 +4,21 @@ from .models import Product
 from .forms import SearchedProduct
 
 # Create your views here.
-def index(request):
-    latest_product_list = Product.objects.filter(id=1)
-    context = {
-        'latest_product_list' : latest_product_list,
+
+def home(request):
+    form = SearchedProduct()
+    context= {
+        'form': form,
     }
+    return render(request, 'products/home.html', context)
+
+def index(request):
+    # latest_product_list = Product.objects.filter(id=1)
+    form =  SearchedProduct()
+    context = {
+        # 'latest_product_list' : latest_product_list,
+        'form': form,
+    }   
     return render(request, 'products/index.html', context)
     #products/index.html
 
@@ -31,19 +41,73 @@ def favorites(request):
     return HttpResponse('These are your favorites of your session')
 
 
-def process_search(request):
+def search(request):
+
+    form = SearchedProduct()
 
     try:
+        product = request.POST["search"]
+        data = Product.objects.filter(prod_name__icontains=product)
+
         if request.method == "POST":
-            form = SearchedProduct(request.POST)
+            form = SearchedProduct(data)
 
             if form.is_valid():
-                search = form.cleaned_data["search"]
+                search = form.search
                 search.save()
+                # return HttpResponseRedirect(request, 'products/index.html')
+                return HttpResponseRedirect(request, '/search/%s' %Product.id)
+                
         else:
             form  =  SearchedProduct()
+            return render(request, 'products/home.html', {"form":form})
 
     except KeyError:
-        print('pas de produit correspond, désolé')
+        return render(request, 'products/home.html' %Product.id, {"form":form})
 
-        return render(request, 'products/detail.html', locals())
+
+# def search(request):
+
+#     form = SearchedProduct()
+
+#     try:
+#         user = Product.objects.filter(prod_name__icontains=request.POST["search"])
+#         user.prod_name
+        
+#         if request.method == "POST":
+#             form = SearchedProduct(selected_choice["search"])
+
+#             if form.is_valid():
+#                 search = form.search
+#                 search.save()
+#                 return HttpResponseRedirect(request, 'products/index.html')
+#                 # return HttpResponseRedirect(request, 'products/%i' %Product.id)
+                
+#         else:
+#             form  =  SearchedProduct()
+#             return render(request, 'products/home.html', {"form":form})
+
+#     except KeyError:
+#         return render(request, 'products/home.html' %Product.id, {"form":form})
+
+
+# def process_search(request):
+
+#     form = SearchedProduct()
+#     try:
+#         selected_choice = Product.objects.filter(prod_name__icontains=request.POST["search"])
+        
+#         if request.method == "POST":
+#             form = SearchedProduct(selected_choice["search"])
+
+#             if form.is_valid():
+#                 search = form.search
+#                 search.save()
+#                 return HttpResponseRedirect(request, 'products/%i' %Product.id, {"form":form})
+
+#         else:
+#             form  =  SearchedProduct()
+#             return render(request, 'products/home.html', {"form":form})
+
+#     except KeyError:
+#         return render(request, 'products/%i' %Product.id)
