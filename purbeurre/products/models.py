@@ -1,4 +1,6 @@
 from django.db import models
+#toujours 1 espace avecnos imports et ceux de django
+from .managers import ProductManager
 
 # Create your models here.
 class Category(models.Model):
@@ -23,14 +25,18 @@ class Brand(models.Model):
     def __str__(self):
         return self.brand_name
 
-class Product(models.Model):
+
+
+class Product(models.Model): # pour un produit uniquement
     """table product"""
+    # prod_code = models.BigIntegerField(null=False, unique=True)
     prod_name = models.CharField(max_length=255)
 
     prod_category = models.ForeignKey(
                         Category,
                         on_delete = models.CASCADE
                         )
+                        
     prod_store = models.ForeignKey(
                         Store,
                         on_delete = models.CASCADE
@@ -45,14 +51,11 @@ class Product(models.Model):
     prod_url = models.URLField(max_length=200)
     prod_image_url = models.URLField(max_length=200)
 
+    objects = ProductManager()
+
+
     def __str__(self):
         return f"{self.prod_name}, nutriscore: {self.prod_nutrition_grade_fr}"
-
-    def show_healthy_products(self):
-        """ retrieve healthier products from bdd
-        from user's query"""
-        return Product.objects.filter(prod_category=self.prod_category,
-        prod_nutrition_grade_fr__lt=self.prod_nutrition_grade_fr)
 
 
 class Favorite(models.Model):

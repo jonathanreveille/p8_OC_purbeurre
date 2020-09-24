@@ -19,7 +19,7 @@ class  ProductDownloader:
                 "tag_contains_0": "contains",
                 "tag_0": category,
                 "sort_by": "unique_scans_n",
-                "page_size": 1,
+                "page_size": 2,
                 "json": 1
                 }
 
@@ -64,7 +64,7 @@ class  ProductDownloader:
         """
 
         fields = [
-            'product_name', 'nutrition_grade_fr', 'brands',
+            'product_name_fr', 'nutrition_grade_fr', 'brands',
             'stores', 'url', 'categories', 'code',
             'image_nutrition_url', 'image_front_url'
             ]
@@ -88,8 +88,8 @@ class  ProductDownloader:
             if self.is_valid_data(product):
                 #contains only object products with all fields
                 self.product_list.append(product)
-
-        pprint.pprint(self.product_list)
+        print("PRODUCT:", self.product_list)
+        #pprint.pprint(self.product_list)
         return self.product_list
         
 

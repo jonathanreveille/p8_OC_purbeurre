@@ -33,12 +33,22 @@
                         <img src="{% static 'dist/assets/img/logo_pb.png' %}" alt="Logo PurBeurre">PurBeurre</a>
                     </div>
 
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" 
+                    data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" 
+                    aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    
                     <div class="collapse navbar-collapse" id="navbarResponsive">
+
                         <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                            <li class="fas fa-carrot"><a class="nav-link js-scroll-trigger" href="#results"></a></li>
-                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#results">Founders</a></li>
-                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Connexion</a></li>
-                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Mes aliments</a></li>
+                        
+                            <form method="get" action="{% url 'products:search' %}">
+                                {{ search_form.as_p }}
+                            </form>
+
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#results"><i class="fas fa-carrot"></i></a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#results"><i class="fas fa-cannabis"></i></a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services"><i class="fas fa-sign-in-alt" alt="Login"></i></a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio"><i class="fas fa-plus-circle"></i></a></li>
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
                         </ul>
                     </div>
@@ -60,26 +70,21 @@
                             <h2>Trouver un produit de substitution pour ceux que vous mangez tous les jours </h2>
                             <br><br><br>
 
-                        <form method="get">
-                            <div class="form-group">
-                                {% csrf_token %}
-                                <label for="product_search_box"></label>
-                                <input type="text" class="form-control" id="product_search" name="search" placeholder="Recherche d'un produit...">
-                            <br/>
+                        <form method="get" action="{% url 'products:search' %}">
+                            {{ search_form.as_p }}
                             <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                             </div>
-                        </form>                  
+                        </form>
+                        
                         </div>
                     </div>
                 </div>
             </header>
         {% endblock header %}
 
-
         {% block content %}
         <!-- About-->
         {% endblock content %}
-
 
         {% block contact %}
         <!--Contact-->
@@ -88,7 +93,7 @@
         <!-- Footer-->
         {%block footer %}
         <footer class="bg-light py-5">
-            <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Start Bootstrap</div></div>
+            <div class="container"><div class="small text-center text-muted">Copyright © 2020 - PurBeurre -  Website powered by Boostrap 4, Django, fontawesome, OpenFoodFacts</div></div>
         </footer>
          {% endblock footer %}
 
