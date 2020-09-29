@@ -24,7 +24,8 @@ def search(request):
 
         if form.is_valid():
             product = form.cleaned_data.get("query_search")
-            product_found = Product.objects.filter(prod_name__icontains = product) #et le nutritionscore pareil
+            product_found = Product.objects.filter(prod_name__icontains=product) #et le nutritionscore pareil
+
             context = {
                 'product':product,
                 'product_found': product_found,
@@ -45,9 +46,8 @@ def search(request):
 def detail(request, product_id):
 
     """method to show product detail page"""
-    # product = get_object_or_404(Product, Product.objects.filter(pk=product_id))
+
     product_details = get_object_or_404(Product, pk=product_id)
-    # Product.objects.filter(pk=product_id)
 
     context = {
         'product': product_details
