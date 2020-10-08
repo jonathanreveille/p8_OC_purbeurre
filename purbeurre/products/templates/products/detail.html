@@ -7,14 +7,14 @@
 
 {% block header %}
 
-    <header class="mastheader">
-
+    <header class="mastheader"> 
         <div class="container h-100">
             <div class="row h-100 align-items-center justify-content-center text-center">
 
             {% if product %}
                 <div class="header_product">
-                    <img src="{{ product.prod_image_url }}" alt="product_image" height=390 width=390>
+                    <a href="#product_detail"><img src="{{ product.prod_image_url }}" alt="product_image" height=240 width=240>
+                    </a>
                 </div>
             {% endif%}
 
@@ -25,10 +25,10 @@
 {% endblock header %}
 
 {% block content %}
-<section class="page-section" id="product_detail">
+    <section class="page-section" id="product_detail">
+
     <div class="container">
         <div class="row justify-content-center">
-        
             <div class="col-lg-8 text-center">
                 <h2 class="mt-0"> {{product.prod_name}}</h2>
                 <hr class="divider my-4" />
@@ -39,7 +39,6 @@
         <div class="row">
 
             <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
-
                 <img src="{% static 'dist/assets/img' %}/{{ product.prod_nutrition_grade_fr }}.png" alt="nutriscore">
             </div>
 
@@ -53,12 +52,5 @@
     <div class="container text-center">
         <a class="btn btn-light btn-xl mb-4" href="{{product.prod_url}}" target=_blank>Voir la fiche du produit sur OpenFoodFacts.fr</a>
     </div>
-
-
-
-{% comment %} 
-    <p>nom : {{product.prod_name}}</p>
-    <p>nutricore :{{product.prod_nutrition_grade_fr}}
-    <a href="{{product.prod_url}}">Voir fiche produit</a> {% endcomment %}
 
 {% endblock content %}

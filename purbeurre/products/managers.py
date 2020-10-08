@@ -15,6 +15,7 @@ class ProductManager(models.Manager): # pour faire recherche pour tout les produ
 
         for product in product_list:
             brand = Brand.objects.create(brand_name=product["brands"])
+            
             for store_name in product["stores"].split(","):
                 store = Store.objects.create(store_name=store_name.strip().lower())
 
@@ -29,12 +30,3 @@ class ProductManager(models.Manager): # pour faire recherche pour tout les produ
                                     prod_category=categories,
                                     prod_store=store,
                                 )
-
-
-    def show_healthy_products(self):
-        """Retrieve healthier products from bdd
-        from user's query search"""
-        from .models import Product
-        
-        p = Product()
-        return p.objects.filter(prod_category=self.prod_category, prod_nutrition_grade_fr__lt=self.prod_nutrition_grade_fr)

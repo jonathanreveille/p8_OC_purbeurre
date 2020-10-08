@@ -7,12 +7,15 @@ from .forms import SearchedProductForm
 # Create your views here.
 def home(request, search):
     """View of home page of the application purbeurre"""
+
     form = SearchedProductForm()
-    product_search = get_object_or_404(Product, Product.objects.filter(prod_name__icontains=search))
+
+    product_search = get_object_or_404(Product, Product.objects.filter(prod_name_category_name__icontains=search))
     context = {
         'product': product_search,
         'form': form,
     }
+
     return render(request, 'products/home.html', context)
 
 
@@ -28,15 +31,18 @@ def search(request):
 
         if form.is_valid():
             product = form.cleaned_data.get("query_search")
-            product_found = Product.objects.filter(prod_name__icontains=product) #et le nutritionscore pareil
+            product_found = Product.objects.filter(
+                prod_name__icontains=product,
+                prod_nutrition_grade_fr__lt="c"
+                )[:6]
 
-            context = {
+            context = { 
                 'product':product,
                 'product_found': product_found,
             }
 
         return  render(request, 'products/search.html', context)
-        # product.object.find_subsitute ==> retrouver une liste de substitue possible
+
 
     else:
         form = SearchedProductForm()
