@@ -10,5 +10,3 @@ urlpatterns = [
     path('search/', views.search, name="search"),
     path('<int:product_id>/detail/', views.detail, name='detail'),
 ]
-#     path('detail/<int:product.id>/', views.detail, name="detail"),
-# ] 

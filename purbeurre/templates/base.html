@@ -29,7 +29,7 @@
                 <div class="container">
 
                     <div class=logo>
-                        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                        <a class="navbar-brand js-scroll-trigger" href="{% url 'home' %}">
                         <img src="{% static 'dist/assets/img/logo_pb.png' %}" alt="Logo PurBeurre">PurBeurre</a>
                     </div>
 
@@ -44,12 +44,28 @@
                             <form method="get" action="{% url 'products:search' %}">
                                 {{ search_form.as_p }}
                             </form>
+                            
+                            {% if user.is_authenticated %}
 
-                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#results"><i class="fas fa-carrot"></i></a></li>
-                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#results"><i class="fas fa-cannabis"></i></a></li>
-                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services"><i class="fas fa-sign-in-alt" alt="Login"></i></a></li>
-                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio"><i class="fas fa-plus-circle"></i></a></li>
-                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'profile' %}"><i class="fas fa-carrot" alt="my-food"></i></a></li>
+                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" alt="logout"></i></a></li>
+
+                            {% else %}
+                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'login' %}"><i class="fas fa-sign-in-alt" alt="login"></i></a></li>
+                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'register' %}"><i class="fas fa-plus-square" alt="register"></i></a></li>
+                            {% endif %}
+                            
+                            {% comment %} <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact"><i class="fas fa-mail-bulk"></i></a></li> {% endcomment %}
+                            
+                            {% comment %} 
+                            QUE SUR LA HOMEPAGE
+                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#results"><i class="fas fa-dna"></i></a></li>
+                            
+                            QUE SI USER EST CONNECTE 
+                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" alt="logout"></i></a></li>
+                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'profil' %}"><i class="fas fa-carrot" alt="my-food"></i></a></li>
+                            {% endcomment %}
+
                         </ul>
                     </div>
                 </div>
@@ -81,6 +97,13 @@
                 </div>
             </header>
         {% endblock header %}
+       
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                {{ message }}</div>
+            {% endfor %}
+        {% endif %}
 
         {% block content %}
         <!-- About-->

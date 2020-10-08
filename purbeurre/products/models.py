@@ -1,5 +1,6 @@
 from django.db import models
-#toujours 1 espace avecnos imports et ceux de django
+from django.conf import settings
+#toujours 1 espace avec nos imports et ceux de django
 from .managers import ProductManager
 
 # Create your models here.
@@ -25,12 +26,9 @@ class Brand(models.Model):
     def __str__(self):
         return self.brand_name
 
-
-
 class Product(models.Model): # pour un produit uniquement
     """table product"""
     
-    # prod_code = models.BigIntegerField(null=False, unique=True)
     prod_name = models.CharField(max_length=255)
 
     prod_category = models.ForeignKey(
@@ -48,7 +46,7 @@ class Product(models.Model): # pour un produit uniquement
                         )
 
     prod_nutrition_grade_fr = models.CharField(max_length=1)
-    prod_image_nutrition_grade_fr = models.URLField(max_length=200)
+    prod_image_nutrition_grade_fr = models.URLField(max_length=200, null=True)
     prod_image_nutrition_url = models.URLField(max_length=200, null=True)
     prod_url = models.URLField(max_length=200)
     prod_image_url = models.URLField(max_length=200)
@@ -65,6 +63,15 @@ class Favorite(models.Model):
     as product substitute (new)
     and product substituted (product that has
     been replaced)"""
+
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name="user favorite",
+        related_name="favorite",
+    )
+
     substitute = models.ForeignKey(
                     Product,
                     on_delete = models.CASCADE,
@@ -81,5 +88,4 @@ class Favorite(models.Model):
 
     def __str__(self):
         return f"new:{self.substitute}, old:{self.substituted}"
-
 

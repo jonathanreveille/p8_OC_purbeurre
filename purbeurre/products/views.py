@@ -1,11 +1,12 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404,render, redirect
 
-from .models import Product
+from .models import Product, Favorite
 from .forms import SearchedProductForm
 
 # Create your views here.
 def home(request, search):
+    """View of home page of the application purbeurre"""
     form = SearchedProductForm()
     product_search = get_object_or_404(Product, Product.objects.filter(prod_name__icontains=search))
     context = {
@@ -16,6 +17,9 @@ def home(request, search):
 
 
 def search(request):
+    """view that corresponds to the search bar zone,
+    that allows to retrieve data from the DB
+    according the user's query"""
 
     context = {}
 
@@ -44,8 +48,7 @@ def search(request):
 
 # # new 22102020
 def detail(request, product_id):
-
-    """method to show product detail page"""
+    """view about detail page of a product"""
 
     product_details = get_object_or_404(Product, pk=product_id)
 
@@ -54,3 +57,5 @@ def detail(request, product_id):
         }
 
     return render(request, 'products/detail.html', context)
+
+

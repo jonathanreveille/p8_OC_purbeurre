@@ -2,42 +2,8 @@
 
 {% load static %}
 
-{% block title %} Purbeurre - Search Results {% endblock title %}
+{% block title %} Purbeurre - Résultat de recherche {% endblock title %}
 
-
-{% block nav %}
-<!--Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-        <div class="container">
-
-            <div class=logo>
-                <a class="navbar-brand js-scroll-trigger" href="{% url 'home' %}">
-                <img src="{% static 'dist/assets/img/logo_pb.png' %}" alt="Logo PurBeurre" title="PurBeurre">PurBeurre</a>
-            </div>
-            
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" 
-                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" 
-                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    
-
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-
-                <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                
-                <form method="get" action="{% url 'products:search' %}">
-                    {{ search_form.as_p }}
-                </form>
-
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#results"><i class="fas fa-carrot"></i></a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#results"><i class="fas fa-cannabis"></i></a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services"><i class="fas fa-sign-in-alt" alt="Login"></i></a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio"><i class="fas fa-plus-circle"></i></a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">FINALLY</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-{% endblock nav %}
 
 {% block header %}
 
@@ -48,7 +14,7 @@
 
             {% if product %}
                 <div class="header_product">
-                    <img src="{{ product.prod_image_url }}" alt="product_image">
+                    <img src="{{ product.prod_image_url }}" alt="product_image" height=390 width=390>
                 </div>
             {% endif%}
 
@@ -77,14 +43,14 @@
             </div>
 
             <div class="col-lg-4 mr-auto text-center">
-                <img src="{{ product.prod_image_nutrition_url }}" alt="nutrition_fr_100g">
+                <img src="{{ product.prod_image_nutrition_url }}" alt="nutrition_fr_100g" height=200 width=400>
             </div>
         </div>
     </div>
 </section>
 
     <div class="container text-center">
-        <a class="btn btn-light btn-xl" href="{{product.prod_url}}" target=_blank>Voir la fiche du produit sur OpenFoodFacts.org</a>
+        <a class="btn btn-light btn-xl mb-4" href="{{product.prod_url}}" target=_blank>Voir la fiche du produit sur OpenFoodFacts.fr</a>
     </div>
 
 
