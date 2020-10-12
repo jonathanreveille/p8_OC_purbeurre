@@ -10,7 +10,7 @@ def home(request, search):
 
     form = SearchedProductForm()
 
-    product_search = get_object_or_404(Product, Product.objects.filter(prod_name_category_name__icontains=search))
+    product_search = get_object_or_404(Product, Product.objects.filter(category_name_prod_name__icontains=search))
     context = {
         'product': product_search,
         'form': form,
@@ -34,7 +34,7 @@ def search(request):
             product_found = Product.objects.filter(
                 prod_name__icontains=product,
                 prod_nutrition_grade_fr__lt="c"
-                )[:6]
+                )[:15]
 
             context = { 
                 'product':product,
@@ -42,7 +42,6 @@ def search(request):
             }
 
         return  render(request, 'products/search.html', context)
-
 
     else:
         form = SearchedProductForm()

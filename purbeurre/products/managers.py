@@ -20,9 +20,8 @@ class ProductManager(models.Manager): # pour faire recherche pour tout les produ
                 store = Store.objects.create(store_name=store_name.strip().lower())
 
                 Product.objects.create(
-                                    prod_name=product["product_name"],
+                                    prod_name=product["product_name"][:255],
                                     prod_nutrition_grade_fr=product["nutrition_grade_fr"],
-                                    prod_image_nutrition_grade_fr=product["image_nutrition_url"],
                                     prod_image_nutrition_url=product["image_nutrition_url"],
                                     prod_url=product["url"],
                                     prod_image_url=product["image_front_url"],

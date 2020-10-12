@@ -6,7 +6,7 @@ from .managers import ProductManager
 # Create your models here.
 class Category(models.Model):
     """table category for products"""
-    category_name = models.CharField(max_length=255)
+    category_name = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
         return self.category_name
@@ -14,22 +14,22 @@ class Category(models.Model):
 
 class Store(models.Model):
     """table store for products"""
-    store_name = models.CharField(max_length=255)
+    store_name = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
         return self.store_name
 
 
 class Brand(models.Model):
-    brand_name= models.CharField(max_length=255)
+    brand_name= models.CharField(max_length=255, unique=True)
 
     def __str__(self):
         return self.brand_name
 
 class Product(models.Model): # pour un produit uniquement
     """table product"""
-    
-    prod_name = models.CharField(max_length=255)
+
+    prod_name = models.CharField(max_length=255, unique=True)
 
     prod_category = models.ForeignKey(
                         Category,
@@ -46,7 +46,7 @@ class Product(models.Model): # pour un produit uniquement
                         )
 
     prod_nutrition_grade_fr = models.CharField(max_length=1)
-    prod_image_nutrition_grade_fr = models.URLField(max_length=200, null=True)
+    # prod_image_nutrition_grade_fr = models.URLField(max_length=200, null=True)
     prod_image_nutrition_url = models.URLField(max_length=200, null=True)
     prod_url = models.URLField(max_length=200)
     prod_image_url = models.URLField(max_length=200)
