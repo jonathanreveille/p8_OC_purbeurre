@@ -13,8 +13,9 @@
             {% if product %}
               {% for prod in product_found %}
                 {% if forloop.first %}
-                  <div class="image_product">
-                    <h2 class="searched_product_category">Catégorie : {{ prod.prod_category }}</h2>
+                  <div class="image_product" value={{prod.id}}>
+                    <h2 class="searched_product_name" id="searched_product_name" name="searched_product_name"
+                    value={{prod.id}}>{{ prod.prod_name }}</h2>
                 </div> 
                 {% endif %}
               {% endfor %}
@@ -23,7 +24,6 @@
           </div>
   </header>
 {% endblock header %}
-
 
 {% block content %}
   <div class="container">
@@ -36,17 +36,31 @@
     {% for product in product_found %}
       <div class="col-lg-4 col-sm-6 mb-4">
         <div class="card h-100 pl-4 pr-4">
-          <a href="{% url 'products:detail' product.id %}"><img class="card-img-top" src="{{ product.prod_image_url }}" alt="product_image" height=300 width=250></a>
+
+          <a href="{% url 'products:detail' product.id %}">
+          <img class="card-img-top" src="{{ product.prod_image_url }}" alt="product_image" height=300 width=250>
+          </a>
+            
+            <div class="card__score">
+              <img src="{% static 'dist/assets/img' %}/{{ product.prod_nutrition_grade_fr }}.png" alt="nutriscore">
+            </div>
+
             <div class="card-body">
               <h5 class="card-title">
                 <a href="{% url 'products:detail' product.id %}">{{product.prod_name}}</a>
+                  <br/>
+
                   {% if user.is_authenticated %}
-                      <button class="btn btn-outline-info pl-10" type="submit"><i class="fas fa-heart"></i></button>
+
+                      <form method="post" action="{% url 'products:favorite' %}">
+                      {% csrf_token %}
+                        <button class="btn btn-outline-info pl-10" type="submit" name="favorite_id" value={{product.id}}>
+                          <i class="fas fa-heart"></i></button>&nbsp Sauvegarder
+                          <input type="hidden" id="id_substitute" name="id_substitute" value="{{ substitute.id }}">
+                          <input type="hidden" id="id_product" name="id_product" value="{{ product.id }}">
+                      </form>
                   {% endif %} 
               </h5>
-                <p class="card-text">
-                  <img src="{% static 'dist/assets/img' %}/{{ product.prod_nutrition_grade_fr }}.png" alt="nutriscore">
-                </p>
             </div>
           </div>
         </div>

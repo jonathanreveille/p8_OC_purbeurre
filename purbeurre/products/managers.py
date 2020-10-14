@@ -6,6 +6,7 @@ class ProductManager(models.Manager): # pour faire recherche pour tout les produ
     def creerlamethodequejeveux(self, parm1, parm2): #recherche de substitue
         pass
 
+
     def create_objects_from_openfoodfacts(self, category, product_list):
         """this method is to create product objects into our
         database"""
@@ -19,7 +20,7 @@ class ProductManager(models.Manager): # pour faire recherche pour tout les produ
             for store_name in product["stores"].split(","):
                 store = Store.objects.create(store_name=store_name.strip().lower())
 
-                Product.objects.create(
+                Product.objects.get_or_create(
                                     prod_name=product["product_name"][:255],
                                     prod_nutrition_grade_fr=product["nutrition_grade_fr"],
                                     prod_image_nutrition_url=product["image_nutrition_url"],

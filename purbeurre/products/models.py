@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-#toujours 1 espace avec nos imports et ceux de django
+# toujours 1 espace avec nos imports et ceux de django
 from .managers import ProductManager
 
 # Create your models here.
@@ -46,7 +46,6 @@ class Product(models.Model): # pour un produit uniquement
                         )
 
     prod_nutrition_grade_fr = models.CharField(max_length=1)
-    # prod_image_nutrition_grade_fr = models.URLField(max_length=200, null=True)
     prod_image_nutrition_url = models.URLField(max_length=200, null=True)
     prod_url = models.URLField(max_length=200)
     prod_image_url = models.URLField(max_length=200)
