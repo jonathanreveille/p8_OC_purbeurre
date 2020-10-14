@@ -4,7 +4,30 @@
 
 {% block title %} Purbeurre - Search Results {% endblock title %}
 
+
 {% block header %}
+<!-- Masthead-->
+  <header class="mastheader">
+      <div class="container h-100">
+        
+          <div class="row h-100 align-items-center justify-content-center text-center">
+            {% if product %}
+              {% for prod in product_found %}
+                {% if forloop.first %}
+                  <div class="image_product" value={{prod.id}}>
+                    <h2 class="searched_product_name" id="searched_product_name" name="searched_product_name"
+                    value={{prod.id}}>{{ prod.prod_name }}</h2>
+                    <img src={{prod.prod_image_url}} alt="image_searched_product" height=300 width=250>
+                  </div> 
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+              </div>
+          </div>
+  </header>
+{% endblock header %}
+
+{% comment %} {% block header %}
 <!-- Masthead-->
   <header class="mastheader">
       <div class="container h-100">
@@ -23,7 +46,7 @@
               </div>
           </div>
   </header>
-{% endblock header %}
+{% endblock header %} {% endcomment %}
 
 {% block content %}
   <div class="container">
@@ -53,12 +76,20 @@
                   {% if user.is_authenticated %}
 
                       <form method="post" action="{% url 'products:favorite' %}">
-                      {% csrf_token %}
-                        <button class="btn btn-outline-info pl-10" type="submit" name="favorite_id" value={{product.id}}>
-                          <i class="fas fa-heart"></i></button>&nbsp Sauvegarder
+                        {% csrf_token %}
+                          <button class="btn btn-outline-info pl-10" type="submit" name="favorite_id" value={{product.id}}>
+                            <i class="fas fa-heart"></i></button>&nbsp Sauvegarder
+                          
                           <input type="hidden" id="id_substitute" name="id_substitute" value="{{ substitute.id }}">
-                          <input type="hidden" id="id_product" name="id_product" value="{{ product.id }}">
+                          
+                          {% for p in product_found %}
+                            {% if forloop.first %}
+                          <input type="hidden" id="id_product" name="id_product" value="{{ p.id }}">
+                            {% endif %}
+                          {% endfor %}
+
                       </form>
+
                   {% endif %} 
               </h5>
             </div>

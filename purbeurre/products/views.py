@@ -35,7 +35,7 @@ def search(request):
             product_found = Product.objects.filter( 
                 prod_name__icontains=product,
                 prod_nutrition_grade_fr__lt="d",
-                )[:12]
+                )[3:9]
 
             context = {
                 'product':product,
@@ -143,12 +143,12 @@ def favorite(request):
 #         new_favorite_item.save()
 
 
-    try:
-        product, substitute = (Product.objects.get(barcode=product_id),
-                               Product.objects.get(barcode=substitute_id))
-    except (IntegrityError, Product.DoesNotExist):
-        # if the product or substitute doesn't exist
-        messages.info(request, "Produit ou substitut inexistant !")
-        return redirect('/')
+    # try:
+    #     product, substitute = (Product.objects.get(barcode=product_id),
+    #                            Product.objects.get(barcode=substitute_id))
+    # except (IntegrityError, Product.DoesNotExist):
+    #     # if the product or substitute doesn't exist
+    #     messages.info(request, "Produit ou substitut inexistant !")
+    #     return redirect('/')
 
-    favorite = Favorite(user=user, product=product, substitute=substitute)
+    # favorite = Favorite(user=user, product=product, substitute=substitute)
