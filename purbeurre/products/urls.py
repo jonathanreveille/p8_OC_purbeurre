@@ -9,6 +9,5 @@ urlpatterns = [
     # ex : /products/search/
     path('search/', views.search, name="search"),
     path('<int:product_id>/detail/', views.detail, name='detail'),
-    # path("<int:product_id>/favorite/>", views.favorite, name="favorite"),
-    path('favorite/', views.favorite, name="favorite"),
+    path('favorite/', views.favorite, name="favorite")
 ]

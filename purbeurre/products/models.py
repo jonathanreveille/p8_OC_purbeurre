@@ -86,5 +86,4 @@ class Favorite(models.Model):
     )
 
     def __str__(self):
-        return f"new:{self.substitute}, old:{self.substituted}"
-
+        return f"new:{self.substitute}, old:{self.substituted}"# from django.db import models
