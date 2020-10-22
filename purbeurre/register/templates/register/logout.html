@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %} Purbeurre - Déconnexion {% endblock title %}
+
+{% block header %}
+<!-- Masthead-->
+    <header class="mastheader">
+        <div class="container h-100">
+            </div>
+    </header>
+{% endblock header %}
+
+{% block content %}
+    <h2> Vous êtes déconnecté de la plateforme </h2>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                <a class="ml-2" href="{% url 'login'  %}">Se connecter à nouveau?</a>
+            </small> 
+        </div>
+{% endblock content %}
