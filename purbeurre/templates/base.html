@@ -46,25 +46,14 @@
                             </form>
                             
                             {% if user.is_authenticated %}
-
-                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'profile' %}"><i class="fas fa-carrot" alt="my-food"></i></a></li>
+                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'profile' %}"><i class="fas fa-user" alt="my_profile"></i></a></li>
+                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'favorite' %}"><i class="fas fa-carrot" alt="my-food"></i></a></li>
                                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" alt="logout"></i></a></li>
 
                             {% else %}
                                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'login' %}"><i class="fas fa-sign-in-alt" alt="login"></i></a></li>
                                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'register' %}"><i class="fas fa-plus-square" alt="register"></i></a></li>
                             {% endif %}
-                            
-                            {% comment %} <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact"><i class="fas fa-mail-bulk"></i></a></li> {% endcomment %}
-                            
-                            {% comment %} 
-                            QUE SUR LA HOMEPAGE
-                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#results"><i class="fas fa-dna"></i></a></li>
-                            
-                            QUE SI USER EST CONNECTE 
-                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" alt="logout"></i></a></li>
-                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'profil' %}"><i class="fas fa-carrot" alt="my-food"></i></a></li>
-                            {% endcomment %}
 
                         </ul>
                     </div>

@@ -20,7 +20,7 @@ class Command(BaseCommand):
 
             Product.objects.create_objects_from_openfoodfacts(category, products) #on va créer les objets
             
-            continue
+            # continue
         
         print('Every product is in your database now ! Here you go ! ')
 

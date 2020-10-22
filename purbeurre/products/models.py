@@ -29,17 +29,20 @@ class Brand(models.Model):
 class Product(models.Model): # pour un produit uniquement
     """table product"""
 
+    # code = models.BigIntegerField(primary_key=True)
+    
     prod_name = models.CharField(max_length=255, unique=True)
 
     prod_category = models.ForeignKey(
                         Category,
                         on_delete = models.CASCADE
                         )
-                        
+       
     prod_store = models.ForeignKey(
                         Store,
                         on_delete = models.CASCADE
                         )
+
     prod_brand = models.ForeignKey(
                         Brand,
                         on_delete = models.CASCADE
@@ -47,7 +50,7 @@ class Product(models.Model): # pour un produit uniquement
 
     prod_nutrition_grade_fr = models.CharField(max_length=1)
     prod_image_nutrition_url = models.URLField(max_length=200, null=True)
-    prod_url = models.URLField(max_length=200)
+    prod_url = models.URLField(max_length=200, unique=True)
     prod_image_url = models.URLField(max_length=200)
 
     objects = ProductManager()

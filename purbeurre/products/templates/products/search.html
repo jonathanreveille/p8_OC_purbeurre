@@ -37,13 +37,14 @@
   <div class="row">
     {% for product in product_found %}
       <div class="col-lg-4 col-sm-6 mb-4">
+        
         <div class="card h-100 pl-4 pr-4">
 
           <a href="{% url 'products:detail' product.id %}">
           <img class="card-img-top" src="{{ product.prod_image_url }}" alt="product_image" height=300 width=250>
           </a>
-            
-            <div class="card__score">
+
+          <div class="card__score">
               <img src="{% static 'dist/assets/img' %}/{{ product.prod_nutrition_grade_fr }}.png" alt="nutriscore">
             </div>
 
