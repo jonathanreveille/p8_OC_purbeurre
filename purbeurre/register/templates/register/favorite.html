@@ -23,7 +23,7 @@
 {% block content %}
   <div class="container">
     <div class="row justify-content-center pt-4 pb-4">
-      <h2> Votre prochain panier de course : </h2>
+      <h2 class="custom1"> Votre prochain panier de course : </h2>
     </div>
   </div>
     {% comment %} <div class="row justify-content-center pt-4 pb-4"> {% endcomment %}
@@ -33,7 +33,6 @@
 
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100 pl-4 pr-4">
-                        {% comment %} <div class="col-sm"> {% endcomment %}
                             <a href="{{ product.prod_url }}">
                                 <img class="card-img-top" src="{{ product.prod_image_url }}" alt="product_image" height=250 width=300>
                             </a>
@@ -44,7 +43,7 @@
 
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a href="{{ product.prod_url }}">{{product.prod_name}}</a>
+                                    <a href="{{ product.prod_url }}" title="Voir sur Openfoodfacts?">{{product.prod_name}}</a>
 
                                 </h5>
                             </div>
@@ -58,32 +57,5 @@
         </div>
     {% endfor %}
     {% endif %}
-
-{% comment %} 
-{% if substitutes %} 
-    <div class="container">
-        <div class="row justify-content-center pt-4 pb-4">
-        <h2> Voici vos favoris : </h2>
-        </div>
-    </div>
-
-    <div class="row">
-    {% for product in substitutes %}
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100 pl-4 pr-4">
-
-                <a href="{{ product.prod_url }}">
-                    <img class="card-img-top" src="{{ product.prod_image_url }}" alt="product_image" height=300 width=250>
-                </a>
-                    
-                <div class="card__score">
-                    <img src="{% static 'dist/assets/img' %}/{{ product.prod_nutrition_grade_fr }}.png" alt="nutriscore">
-                </div>
-
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="{{ product.prod_url }}">{{product.prod_name}}</a></h5>
-                <br/>
-            </div> {% endcomment %}
-
+    
 {% endblock content %}

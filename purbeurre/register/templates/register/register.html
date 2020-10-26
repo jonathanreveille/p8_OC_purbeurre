@@ -9,17 +9,15 @@
 {% block header %}
 <!-- Masthead-->
     <header class="mastheader">
-        <div class="container h-100">
-            </div>
     </header>
-{% endblock header %} 
+{% endblock header %}
 
 {% block content %}
         <div class="content-section">
             <form method="POST">
                 {% csrf_token %}
                 <fieldset  class="form-group pl-3">
-                    <legend class="border-bottom  mb-4 pl-1">Rejoindre la communauté aujourd'hui</legend>
+                    <legend class="contact text-center border-bottom mb-4 pl-1">Rejoindre la communauté aujourd'hui</legend>
                     {{ form|crispy }}
                 </fieldset>
 
@@ -34,5 +32,22 @@
                 </small> 
             </div>
         </div>
+        <br/><br/><br/><br/><br/><br/>
+
 
 {% endblock content %}
+
+{% block footer %}
+
+    <footer class="profile_footer">
+
+        <div class="container">
+            <div class="footer-copyright small text-center text-muted">Copyright © 2020 - PurBeurre
+            Website powered by Boostrap 4, Django, fontsawesome, OpenFoodFacts - Photographie : <a href="https://unsplash.com/photos/eqsEZNCm4-c" target="_blank">Olenka Kotyk - Fresh Deserts</a>
+            </div>
+        </div>
+
+    </footer>
+
+
+{% endblock footer %}
