@@ -10,6 +10,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.category_name
+    
+    class Meta:
+        verbose_name_plural = "categories"
 
 
 class Store(models.Model):
