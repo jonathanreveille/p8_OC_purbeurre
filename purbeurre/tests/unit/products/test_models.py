@@ -125,7 +125,8 @@ class FavoriteModelTest(TestCase):
         store = Store.objects.create(store_name="picard")
         brand = Brand.objects.create(brand_name="picard")
 
-        product = Product.objects.create(prod_name="pizza n11 chevre, miel, noix",
+        product = Product.objects.create(
+                prod_name="pizza n11 chevre, miel, noix",
                 prod_category=category,
                 prod_store=store,
                 prod_brand=brand,
@@ -135,7 +136,8 @@ class FavoriteModelTest(TestCase):
                 prod_image_url="https://static.openfoodfacts.org/images/products/327/016/083/8110/front_fr.27.400.jpg",
                 )
 
-        substitute = Product.objects.create(prod_name="3 fromages bio",
+        substitute = Product.objects.create(
+                prod_name="3 fromages bio",
                 prod_category=category,
                 prod_store=store,
                 prod_brand=brand,

@@ -13,7 +13,7 @@ class SearchedProductFormTest(TestCase):
     def test_valid_data(self):
         self.query.query_search = "pizza"
         self.assertEquals(self.query.query_search, "pizza")
-        print(self.query.query_search)
+
 
 
 
