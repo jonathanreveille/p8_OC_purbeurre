@@ -45,7 +45,7 @@
 
                         <ul class="navbar-nav ml-auto my-2 my-lg-0">
                         
-                            <form method="get" action="{% url 'products:search' %}">
+                            <form method="get" action="{% url 'products:search' %}" class="query_search">
                                 {{ search_form.as_p }}
                             </form>
                             
@@ -78,7 +78,7 @@
                             <h2>Trouver un produit de substitution pour ceux que vous mangez tous les jours </h2>
                             <br><br><br>
 
-                        <form method="get" action="{% url 'products:search' %}">
+                        <form method="get" action="{% url 'products:search' %}" class="query_search">
                             {{ search_form.as_p }}
                             <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                             </div>

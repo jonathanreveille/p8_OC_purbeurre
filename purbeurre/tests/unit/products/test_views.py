@@ -56,8 +56,8 @@ class ProductsViewsTest(TestCase):
 
     def test_views_product_favorite_post_method_to_add_substitute_and_substituted(self):
         self.client.login(username="Test_user_food", password1="test123test")
-        self.product1 = Product.objects.get(id=self.product1_id)
-        self.product2 = Product.objects.get(id=self.product2_id)
+        self.substitute = Product.objects.get(id=self.product1_id)
+        self.substituted = Product.objects.get(id=self.product2_id)
 
         self.fav = Favorite.objects.create(
             user=self.user,
@@ -68,8 +68,8 @@ class ProductsViewsTest(TestCase):
 
         self.client.post('profile/favorite',
                                         {
-                                        "substitute": self.product1,
-                                        "substituted": self.product2,
+                                        "substitute": self.substitute,
+                                        "substituted": self.substituted,
                                         })
 
         self.assertEquals(self.favorite.substitute.id, self.product1_id)
