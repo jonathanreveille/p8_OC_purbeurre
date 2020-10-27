@@ -73,7 +73,7 @@ Third, the current local database might be empty, to feed it you may do these ne
 * `python manage.py initdb`
 
 If you need to delete all the entries if the database, you may :
-* 1st step : python manage.py deletedb
+* 1st step : `python manage.py deletedb`
 * 2nd step : delete the file at the path : purbeurre.products.migrations.0001_initial.py
 Becareful not to delete the "____init____.pyc" ! 
 * 3rd step : You may add more categories, or change the models.
