@@ -68,9 +68,9 @@ the link that is presented on your terminal screen.
 * You can stop the server by doing ctr+c in the server.
 
 Third, the current local database might be empty, to feed it you may do these next steps :
-* python manage.py makemigrations <application_name> (for example "products")
-* python manage.py migrate
-* python manage.py initdb
+* `python manage.py makemigrations <application_name>` (for example "products")
+* `python manage.py migrate`
+* `python manage.py initdb`
 
 If you need to delete all the entries if the database, you may :
 * 1st step : python manage.py deletedb
