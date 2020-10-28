@@ -1,8 +1,7 @@
-from django.test import TestCase
+from django.test import TestCase, TransactionTestCase
 from django.contrib.auth.models import User
 
 from products.models import Product, Category, Store, Brand, Favorite
-
 
 class CategoryModelTest(TestCase):
     @classmethod
@@ -77,7 +76,6 @@ class BrandModelTest(TestCase):
         self.assertEquals(expected_object_name, str(self.brand))
 
 
-
 class ProductModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -124,6 +122,28 @@ class ProductModelTest(TestCase):
     def test_objects_prod_name(self):
         product_name = self.product.prod_name
         self.assertEquals(product_name, "pizza crusty")
+
+
+class ProductTestsThatDependsOnPrimaryKeySequences(TransactionTestCase):
+    reset_sequences = True
+
+    def setUp(self):
+        category = Category.objects.create(category_name="pizza")
+        store = Store.objects.create(store_name="u")
+        brand = Brand.objects.create(brand_name="sodebo")
+
+        self.product = Product.objects.create(prod_name="pizza crusty",
+                prod_category=category,
+                prod_store=store,
+                prod_brand=brand,
+                prod_nutrition_grade_fr="b",
+                prod_image_nutrition_url ="https://static.openfoodfacts.org/images/products/324/227/305/0550/ingredients_fr.23.400.jpg",
+                prod_url="https://fr.openfoodfacts.org/produit/3242273050550/sodebo-pizza-crust-farmer",
+                prod_image_url="https://static.openfoodfacts.org/images/products/324/227/305/0550/front_fr.16.400.jpg",
+                )
+
+    def test_product_pk_is_one(self):
+        self.assertEquals(self.product.pk, 1)
 
 
 class FavoriteModelTest(TestCase):

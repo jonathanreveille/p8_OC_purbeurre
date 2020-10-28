@@ -2,14 +2,22 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 
 
-class UsersTestViews(TestCase):
+class UsersViewsTest(TestCase):
 
     def setUp(self):
         User.objects.create_user(
             username="Foodlover12", password="testing123321")
 
-    def test_user_profile(self):
+    def test_see_user_profile_page(self):
         self.client.login(username="Foodlover12", password="testing123321")
         response = self.client.get("/profile/")
-        self.assertEqual(response.status_code, 200)
+        self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed("register/profile.html")
+    
+    def test_see_user_favorite_page_from_profile(self):
+        self.client.login(username="Foodlover12", password="testing123321")
+        response = self.client.get("/profile/favorite")
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed("register/favorite.html")
+
+

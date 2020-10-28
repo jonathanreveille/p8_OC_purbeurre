@@ -1,9 +1,9 @@
-import unittest
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from django.contrib.auth.models import User
 
-class PurbeurreFunctionalSearchTest(unittest.TestCase):
+class PurbeurreFunctionalSearchTest(StaticLiveServerTestCase):
 
     def setUp(self):
         self.driver = webdriver.Firefox()
@@ -21,15 +21,10 @@ class PurbeurreFunctionalSearchTest(unittest.TestCase):
         self.driver.close()
         self.driver.quit()
 
-class PurbeurreFunctionalUserLogInTest(unittest.TestCase):
+class PurbeurreFunctionalUserLogInTest(StaticLiveServerTestCase):
 
     def setUp(self):
         self.driver = webdriver.Firefox()
-        # self.user = User.objects.create_user(
-        #     username="usertest123",
-        #     email="usertest@occompany.com",
-        #     password="bouyaka231",
-        #     )
 
     def test_user_login_to_existing_account_firefox(self):
         driver = self.driver
@@ -47,7 +42,7 @@ class PurbeurreFunctionalUserLogInTest(unittest.TestCase):
         self.driver.close()
         self.driver.quit()
 
-class PurbeurreFunctionalUserCreationTest(unittest.TestCase):
+class PurbeurreFunctionalUserCreationTest(StaticLiveServerTestCase):
 
     def setUp(self):
         self.driver = webdriver.Firefox()
@@ -77,5 +72,26 @@ class PurbeurreFunctionalUserCreationTest(unittest.TestCase):
         self.driver.close()
         self.driver.quit()
 
+# class PurbeurreFunctionalUserCanDisconnect(unittest.TestCase):
+    
+#     def setUp(self):
+#         self.driver = webdriver.Firefox()
+#         self.driver.get("http://localhost:8000/login/")
+#         elem = self.driver.find_element_by_name("username")
+#         elem.send_keys("usertest123")
+#         elem2 = self.driver.find_element_by_name("password")
+#         elem2.send_keys("bouyaka231")
+#         elem2.send_keys(Keys.RETURN)
+
+#     def test_user_can_disconnect_from_home_page(self):
+#         self.driver.get("http://localhost:8000/")
+#         log_out = self.driver.find_element_by_name('disconnect')
+#         log_out.click()
+#         assert "fas fa-sign-in-alt" in self.driver.page_source
+        
+#     def tearDown(self):
+#         self.driver.close()
+#         self.driver.quit()
+
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main() 
