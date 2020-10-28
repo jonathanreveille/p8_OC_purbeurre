@@ -72,5 +72,22 @@ class PurbeurreFunctionalUserCreationTest(unittest.TestCase):
         self.driver.close()
         self.driver.quit()
 
+class PurbeurreFunctionalUserSendEmailToPurbeurreHomePage(unittest.TestCase):
+
+    def setUp(self):
+        self.driver = webdriver.Chrome()
+
+    def test_user_on_homepage_can_send_email_from_homepage(self):
+        driver = self.driver
+        driver.get("http://localhost:8000/")
+        self.assertIn('Purbeurre - Accueil', driver.title)
+        elem = driver.find_element_by_name("contact_email")
+        elem.click()
+        assert "contact_email" in driver.page_source
+
+    def tearDown(self):
+        self.driver.close()
+        self.driver.quit()
+
 if __name__ == "__main__":
     unittest.main()
