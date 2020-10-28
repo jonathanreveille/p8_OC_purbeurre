@@ -117,6 +117,14 @@ class ProductModelTest(TestCase):
         max_length = self.product._meta.get_field('prod_nutrition_grade_fr').max_length
         self.assertEquals(max_length, 1)
 
+    def test_objects_nutrition_grade_fr(self):
+        nutrition_grade = self.product.prod_nutrition_grade_fr
+        self.assertEquals(nutrition_grade, "b")
+    
+    def test_objects_prod_name(self):
+        product_name = self.product.prod_name
+        self.assertEquals(product_name, "pizza crusty")
+
 
 class FavoriteModelTest(TestCase):
     @classmethod

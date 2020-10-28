@@ -10,6 +10,7 @@ class ProductsViewsTest(TestCase):
         self.user = User.objects.create_user(
             username="Test_user_food",
             email="testadress@purbeurre.com",
+            password="testing123testing",
         )
 
         self.category = Category.objects.create(category_name="biscuit")
@@ -55,7 +56,7 @@ class ProductsViewsTest(TestCase):
         self.assertEquals(response.status_code, 404)
 
     def test_views_product_favorite_post_method_to_add_substitute_and_substituted(self):
-        self.client.login(username="Test_user_food", password1="test123test")
+        self.client.login(username=self.user.username, password=self.user.password)
         self.substitute = Product.objects.get(id=self.product1_id)
         self.substituted = Product.objects.get(id=self.product2_id)
 
@@ -74,3 +75,7 @@ class ProductsViewsTest(TestCase):
 
         self.assertEquals(self.favorite.substitute.id, self.product1_id)
         self.assertEquals(self.favorite.substituted.id, self.product2_id)
+
+    def test_access_views_favorite_without_account(self):
+        response = self.client.get('/profile/favorite/')
+        self.assertEquals(response.status_code, 404)
