@@ -52,8 +52,12 @@ class ProductsViewsTest(TestCase):
         self.assertEquals(response.status_code, 200)
 
     def test_views_product_detail_not_registered(self):
-        response = self.client.get('/products/11111111/detail/')
+        response = self.client.get('/products/detail/11111111')
         self.assertEquals(response.status_code, 404)
+
+    def test_views_product_detail_is_registered(self):
+        response = self.client.get('/products/detail/1')
+        self.assertEquals(response.status_code, 200)
 
     def test_views_product_favorite_post_method_to_add_substitute_and_substituted(self):
         self.client.login(username=self.user.username, password=self.user.password)

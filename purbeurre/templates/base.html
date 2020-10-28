@@ -8,7 +8,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        
         <title>{% block title %} {% endblock title%}</title>
+
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -16,8 +18,6 @@
         <!-- Google fonts-->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet" type="text/css">
-        {% comment %} <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" /> {% endcomment %}
         <!-- Third party plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -52,7 +52,7 @@
                             {% if user.is_authenticated %}
                                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'profile' %}" title="Profile"><i class="fas fa-user" alt="my_profile"></i></a></li>
                                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'favorite' %}" title="Favoris"><i class="fas fa-carrot" alt="my-food"></i></a></li>
-                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout' %}" title="Déconnexion" name="disconnect"><i class="fas fa-sign-out-alt" alt="logout"></i></a></li>
+                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout' %}" title="Déconnexion"><i class="fas fa-sign-out-alt" alt="logout"></i></a></li>
 
                             {% else %}
                                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'login' %}" title="Connexion"><i class="fas fa-sign-in-alt" alt="login"></i></a></li>
@@ -111,7 +111,7 @@
         <footer class="page-footer bg-light py-5">
             <div class="container">
                 <div class="footer-copyright small text-center text-muted">Copyright © 2020 - PurBeurre
-                Website powered by Boostrap 4, Django, fontawesome, OpenFoodFacts - Photography : <a href="https://unsplash.com/photos/eqsEZNCm4-c" target="_blank">Olenka Kotyk - Fresh Deserts</a>
+                Website powered by Boostrap 4, Django, fontsawesome, OpenFoodFacts.org - Photography : <a href="https://unsplash.com/photos/eqsEZNCm4-c" target="_blank">Olenka Kotyk - Fresh Desserts</a>
                 </div>
             </div>
         </footer>

@@ -1,3 +1,4 @@
+import unittest
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -72,26 +73,42 @@ class PurbeurreFunctionalUserCreationTest(StaticLiveServerTestCase):
         self.driver.close()
         self.driver.quit()
 
-# class PurbeurreFunctionalUserCanDisconnect(unittest.TestCase):
+class PurbeurreFunctionalUserCanDisconnect(StaticLiveServerTestCase):
     
-#     def setUp(self):
-#         self.driver = webdriver.Firefox()
-#         self.driver.get("http://localhost:8000/login/")
-#         elem = self.driver.find_element_by_name("username")
-#         elem.send_keys("usertest123")
-#         elem2 = self.driver.find_element_by_name("password")
-#         elem2.send_keys("bouyaka231")
-#         elem2.send_keys(Keys.RETURN)
+    def setUp(self):
+        driver = webdriver.Firefox()
+        self.driver = driver
+        self.driver.get("http://localhost:8000/login/")
+        elem = self.driver.find_element_by_name("username")
+        elem.send_keys("usertest123")
+        elem2 = self.driver.find_element_by_name("password")
+        elem2.send_keys("bouyaka231")
+        elem2.send_keys(Keys.RETURN)
 
-#     def test_user_can_disconnect_from_home_page(self):
-#         self.driver.get("http://localhost:8000/")
-#         log_out = self.driver.find_element_by_name('disconnect')
-#         log_out.click()
-#         assert "fas fa-sign-in-alt" in self.driver.page_source
+    def test_user_can_disconnect_from_home_page(self):
+        self.driver.get("http://localhost:8000/logout/")
+        self.assertIn('Purbeurre - Déconnexion', self.driver.title)
         
-#     def tearDown(self):
-#         self.driver.close()
-#         self.driver.quit()
+    def tearDown(self):
+        self.driver.close()
+        self.driver.quit()
+
+class PurbeurreFunctionalUserSendEmailToPurbeurreHomePage(StaticLiveServerTestCase):
+
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+
+    def test_user_on_homepage_can_send_email_from_homepage(self):
+        driver = self.driver
+        driver.get("http://localhost:8000/")
+        self.assertIn('Purbeurre - Accueil', driver.title)
+        elem = driver.find_element_by_name("contact_email")
+        elem.click()
+        assert "contact_email" in driver.page_source
+
+    def tearDown(self):
+        self.driver.close()
+        self.driver.quit()
 
 if __name__ == "__main__":
     unittest.main() 
