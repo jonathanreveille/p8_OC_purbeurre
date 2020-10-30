@@ -26,8 +26,7 @@ class ProductManager(db.models.Manager): # pour faire recherche pour tout les pr
                                     prod_category=categories,
                                     prod_store=store,
                                 )
-
-
+                                
     # def creerlamethodequejeveux(self, parm1, parm2): #recherche de substitue
     #     passs
     
