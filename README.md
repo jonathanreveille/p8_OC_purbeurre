@@ -68,18 +68,19 @@ the link that is presented on your terminal screen.
 * You can stop the server by doing ctr+c in the server.
 
 Third, the current local database might be empty, to feed it you may do these next steps :
-* `python manage.py makemigrations <application_name>` (for example "products")
-* `python manage.py migrate`
-* `python manage.py initdb`
+* 1st step : `python manage.py makemigrations` or for a specific app ``python manage.py makemigrations <app_name>`(for example app_name is "products" for this project Purbeurre)
+* 2nd step : `python manage.py migrate`
+* 3rd step : `python manage.py initdb`
 
-If you need to delete all the entries if the database, you may :
+If you need to delete all the entries if the database (when you are in development mode), you may :
 * 1st step : `python manage.py deletedb`
 * 2nd step : delete the file at the path : purbeurre.products.migrations.0001_initial.py
-Becareful not to delete the "____init____.pyc" ! 
-* 3rd step : You may add more categories, or change the models.
+Becareful not to delete the "____init____.py", nor the folder migrations ! 
+* 3rd step : You may add more categories, or, change the models and its fields, at this moment.
 
 ### RUN Test
 * Simply run this command in your terminal in the project : `python3 manage.py test --verbosity 2`
+* if you want to use coverage, the command is : `coverage run --source="." manage.py test`
 
 ## Acknowledgment
 I would like to thank my mentor, Thierry Chappuis, for all the help

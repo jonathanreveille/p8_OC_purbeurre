@@ -22,5 +22,4 @@ class ProductManager(db.models.Manager): # pour faire recherche pour tout les pr
                                     'prod_image_url' : product["image_front_url"],
                                     'prod_brand' : brand,
                                     'prod_category' : category,
-                                    }
-                            )
+                                    })
