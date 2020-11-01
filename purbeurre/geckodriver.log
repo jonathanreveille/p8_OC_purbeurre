@@ -1897,3 +1897,4 @@ console.warn: SearchSettings: "get: No settings file exists, new profile?" (new 
 1604250304726	Marionette	INFO	Listening on port 58934
 1604250304785	Marionette	WARN	TLS certificate errors will be ignored for this session
 1604250305925	Marionette	INFO	Stopped listening on port 58934
+1604251604915	Marionette	INFO	Stopped listening on port 58203

@@ -19,7 +19,7 @@ class  ProductDownloader:
                 "tag_contains_0": "contains",
                 "tag_0": category,
                 "sort_by": "unique_scans_n",
-                "page_size":250, #atteindre les 1000 produits par catégorie
+                "page_size":1000, #atteindre les 1000 produits par catégorie
                 "json": 1
                 }
 
