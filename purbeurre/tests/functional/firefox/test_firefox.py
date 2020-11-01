@@ -20,7 +20,6 @@ class PurbeurreFunctionalSearchTest(StaticLiveServerTestCase):
 
     def tearDown(self):
         self.driver.close()
-        self.driver.quit()
 
 class PurbeurreFunctionalUserLogInTest(StaticLiveServerTestCase):
 

@@ -1,7 +1,8 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 
-from products.models import Category, Product, Store, Brand, Favorite
+from products.models import Category, Product, Brand, Favorite
+#Store
 
 
 class ProductsViewsTest(TestCase):
@@ -14,14 +15,14 @@ class ProductsViewsTest(TestCase):
         )
 
         self.category = Category.objects.create(category_name="biscuit")
-        self.store = Store.objects.create(store_name="carrefour")
+        # self.store = Store.objects.create(store_name="carrefour")
         self.brand1 = Brand.objects.create(brand_name="lu")
         self.brand2 = Brand.objects.create(brand_name="bjork")
 
         self.product1 = Product.objects.create(
                 prod_name="belvita pépite chocolat",
                 prod_category=self.category,
-                prod_store=self.store,
+                # prod_store=self.store,
                 prod_brand=self.brand1,
                 prod_nutrition_grade_fr="c",
                 prod_image_nutrition_url ="https://static.openfoodfacts.org/images/products/762/221/071/3780/ingredients_fr.99.400.jpg",
@@ -32,7 +33,7 @@ class ProductsViewsTest(TestCase):
         self.product2 = Product.objects.create(
                 prod_name="petit nature - bjork",
                 prod_category=self.category,
-                prod_store=self.store,
+                # prod_store=self.store,
                 prod_brand=self.brand2,
                 prod_nutrition_grade_fr="b",
                 prod_image_nutrition_url ="https://static.openfoodfacts.org/images/products/229/820/021/027/nutrition_fr.21.400.jpg",
