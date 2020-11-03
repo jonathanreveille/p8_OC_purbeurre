@@ -29,30 +29,6 @@ class CategoryModelTest(TestCase):
         category_plural = str(Category._meta.verbose_name_plural)
         self.assertEquals(category_plural, "categories")
 
-
-# class StoreModelTest(TestCase):
-#     @classmethod
-#     def setUpTestData(cls):
-#         # Set up non-modified objects used by all test methods
-#         Store.objects.create(store_name="u")
-
-#     def setUp(self):
-#         # Run once for every test method to setup clean data.
-#         self.store = Store.objects.get(id=1)
-
-#     def test_store_name_label(self):
-#         field_label = self.store._meta.get_field('store_name').verbose_name
-#         self.assertEquals(field_label, 'store name')
-
-#     def test_store_name_max_length(self):
-#         max_length = self.store._meta.get_field('store_name').max_length
-#         self.assertEquals(max_length, 255)
-
-#     def test_store_name_is_store_name(self):
-#         expected_object_name = f'{self.store.store_name}'
-#         self.assertEquals(expected_object_name, str(self.store))
-
-
 class BrandModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -87,7 +63,6 @@ class ProductModelTest(TestCase):
         Product.objects.create(
                 prod_name="pizza crusty",
                 prod_category=category,
-                # prod_store=store,
                 prod_brand=brand,
                 prod_nutrition_grade_fr="b",
                 prod_image_nutrition_url ="https://static.openfoodfacts.org/images/products/324/227/305/0550/ingredients_fr.23.400.jpg",
@@ -129,12 +104,10 @@ class ProductTestsThatDependsOnPrimaryKeySequences(TransactionTestCase):
 
     def setUp(self):
         category = Category.objects.create(category_name="pizza")
-        # store = Store.objects.create(store_name="u")
         brand = Brand.objects.create(brand_name="sodebo")
 
         self.product = Product.objects.create(prod_name="pizza crusty",
                 prod_category=category,
-                # prod_store=store,
                 prod_brand=brand,
                 prod_nutrition_grade_fr="b",
                 prod_image_nutrition_url ="https://static.openfoodfacts.org/images/products/324/227/305/0550/ingredients_fr.23.400.jpg",
@@ -150,13 +123,11 @@ class FavoriteModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         category = Category.objects.create(category_name="pizza")
-        # store = Store.objects.create(store_name="picard")
         brand = Brand.objects.create(brand_name="picard")
 
         product = Product.objects.create(
                 prod_name="pizza n11 chevre, miel, noix",
                 prod_category=category,
-                # prod_store=store,
                 prod_brand=brand,
                 prod_nutrition_grade_fr="d",
                 prod_image_nutrition_url ="https://static.openfoodfacts.org/images/products/324/227/305/0550/ingredients_fr.23.400.jpg",
@@ -167,7 +138,6 @@ class FavoriteModelTest(TestCase):
         substitute = Product.objects.create(
                 prod_name="3 fromages bio",
                 prod_category=category,
-                # prod_store=store,
                 prod_brand=brand,
                 prod_nutrition_grade_fr="b",
                 prod_image_nutrition_url ="https://static.openfoodfacts.org/images/products/327/016/037/1983/nutrition_fr.6.400.jpg",
