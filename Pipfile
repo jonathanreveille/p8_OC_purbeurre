@@ -9,6 +9,11 @@ selenium = "*"
 [packages]
 django = "*"
 requests = "*"
+django-heroku = "*"
+gunicorn = "*"
+psycopg2 = "*"
+psycopg2-binary = "*"
+markdown = "*"
 
 [requires]
 python_version = "3.7"
