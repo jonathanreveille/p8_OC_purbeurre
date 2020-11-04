@@ -35,7 +35,7 @@ ALLOWED_HOSTS = ['.herokuapps.com', 'locahost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'favicon',
+    'purbeurre',
     'products.apps.ProductsConfig',
     'register.apps.RegisterConfig',
     'openfoodfacts.apps.OpenfoodfactsConfig',
