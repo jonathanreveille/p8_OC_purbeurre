@@ -145,7 +145,7 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-# FAVICON_PATH = STATIC_URL + "img/favicon.ico"
+FAVICON_PATH = STATIC_URL + "img/favicon.ico"
 
 LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL  = 'login'
