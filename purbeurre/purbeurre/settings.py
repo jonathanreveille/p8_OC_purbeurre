@@ -84,22 +84,22 @@ WSGI_APPLICATION = 'purbeurre.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 #IN PRODUCTION DATABASE
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'purbeurre',
-        'USER':'purbeurre',
-        'PASSWORD': 'mypurbeurrepass'
-    }
-}
-
-# IN DEVELOPMENT DB
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'purbeurre',
+#         'USER':'purbeurre',
+#         'PASSWORD': 'mypurbeurrepass'
 #     }
 # }
+
+# IN DEVELOPMENT DB
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Password validation
