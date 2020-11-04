@@ -83,6 +83,7 @@ WSGI_APPLICATION = 'purbeurre.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+#IN PRODUCTION DATABASE
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -91,6 +92,8 @@ DATABASES = {
         'PASSWORD': 'mypurbeurrepass'
     }
 }
+
+# IN DEVELOPMENT DB
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
