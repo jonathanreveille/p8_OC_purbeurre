@@ -4,19 +4,15 @@
 
 $orange: #f4623a;
 $brown: #5c4d42;
-$moules : #345A61;
-$caramel : #DE9440;
-$biscuit : #E8A75D;
-$bonbon : #86EBE6;
 
 //- Override primary color
-$primary: $moules;
+$primary: $orange;
 
 //- Override font system
-$font-family-sans-serif: "Open Sans", -apple-system, BlinkMacSystemFont,
+$font-family-sans-serif: "Merriweather Sans", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-$font-family-serif: "Scope One", -apple-system, BlinkMacSystemFont,
+$font-family-serif: "Merriweather", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 $font-family-base: $font-family-serif;
