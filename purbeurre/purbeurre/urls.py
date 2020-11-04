@@ -21,6 +21,7 @@ from register import views as register_views
 
 
 urlpatterns = [
+    path(r'^', include('favicon.urls')),
     path('', TemplateView.as_view(template_name='products/home.html'), name='home'),
     path('products/', include('products.urls', namespace="products")),
     path('admin/', admin.site.urls),
