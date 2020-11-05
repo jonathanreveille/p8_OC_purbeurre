@@ -1,1 +1,0 @@
-SECRET_KEY_DJANGO="f2u#^k48h9t@oq8s537l-!d6)bd7h(6enpowkmwu+x2p6l888s"
