@@ -16,7 +16,8 @@
   --purple: #6f42c1;
   --pink: #e83e8c;
   --red: #dc3545;
-  --orange: #f4623a;
+  --orange: #2825c4;
+  --oranges: #f4623a;
   --yellow: #ffc107;
   --green: #28a745;
   --teal: #20c997;
@@ -59,9 +60,33 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 }
 
 .profile_footer{
-  display:block;
-  width:100%;
-  padding:30px 30px 30px 30px
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+}
+
+.favorite_footer{
+  position: relative;
+  bottom: 0;
+  width: 1;
+  height: 2.5rem;
+}
+
+input{
+  background-color: #E8A75D;
+  border-color: black;
+}
+
+h1{
+  color:#fff;
+}
+h2{
+  color:#86EBE6;
+}
+
+a{
+  color:#DE9440;
 }
 
 body {
@@ -2444,8 +2469,8 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #f4623a;
-  border-color: #f4623a;
+  background-color: #E8A75D;
+  border-color: black;
 }
 .btn-primary:hover {
   color: #fff;
@@ -6085,7 +6110,7 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color: #f4623a !important;
+  background-color: #345A61 !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -10085,7 +10110,7 @@ hr.light {
 }
 
 .mastheader{
- height : 65vh;
+ height : 70vh;
  background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/bg-masthead.jpg");
  background-position: center;
  background-repeat: no-repeat;
@@ -10093,7 +10118,7 @@ hr.light {
 }
 
 .mastheaderProfile{
-  height : 20vh;
+  height : 40vh;
   background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/bg-masthead.jpg");
   background-position: center;
   background-repeat: no-repeat;

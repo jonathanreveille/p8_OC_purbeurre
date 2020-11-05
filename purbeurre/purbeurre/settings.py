@@ -35,7 +35,6 @@ ALLOWED_HOSTS = ['.herokuapps.com', 'locahost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'purbeurre',
     'products.apps.ProductsConfig',
     'register.apps.RegisterConfig',
     'openfoodfacts.apps.OpenfoodfactsConfig',
@@ -83,21 +82,21 @@ WSGI_APPLICATION = 'purbeurre.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-#IN PRODUCTION DATABASE
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'purbeurre',
-#         'USER':'purbeurre',
-#         'PASSWORD': 'mypurbeurrepass'
-#     }
-# }
-
-# IN DEVELOPMENT DB
-DATABASES = {
+# DATABASE CHOICE
+if DEBUG == True:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'purbeurre',
+        'USER':'purbeurre',
+        'PASSWORD': 'mypurbeurrepass'
     }
 }
 
@@ -140,14 +139,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
+        os.path.join(BASE_DIR, 'static')
+        ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-FAVICON_PATH = STATIC_URL + "img/favicon.ico"
-
 LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL  = 'login'
-
 django_heroku.settings(locals())
