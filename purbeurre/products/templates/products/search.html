@@ -59,9 +59,10 @@
 
                       <form method="post" action="{% url 'products:favorite' %}">
                         {% csrf_token %}
+                        <br/>
                           <button class="btn btn-outline-info pl-10" type="submit" name="favorite_id" value={{product.id}}>
                             <i class="fas fa-heart"></i></button>&nbsp Sauvegarder
-                          
+
                           <input type="hidden" id="id_substitute" name="id_substitute" value="{{ substitute.id }}">
                           
                           {% for p in product_found %}

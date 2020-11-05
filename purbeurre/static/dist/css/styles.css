@@ -73,6 +73,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   height: 2.5rem;
 }
 
+
 input{
   background-color: #E8A75D;
   border-color: black;
@@ -2469,13 +2470,13 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #E8A75D;
+  background-color: #86EBE6;
   border-color: black;
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: #f24516;
-  border-color: #ee3e0d;
+  background-color: #345A61;
+  border-color: #fff;
 }
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
