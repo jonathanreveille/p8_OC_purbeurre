@@ -1,4 +1,4 @@
 ../.env/
 /purbeurre/static/.gitignore
 /purbeurre/static/.travis.yml
-../.vscode/
+/.vscode/
