@@ -16,6 +16,8 @@ psycopg2-binary = "*"
 markdown = "*"
 django-crispy-forms = "*"
 django-favicon = "*"
+selenium = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.7"
