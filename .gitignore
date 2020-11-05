@@ -2,3 +2,4 @@
 /purbeurre/static/.gitignore
 /purbeurre/static/.travis.yml
 /.vscode/
+/purbeurre/purbeurre/settings.py
