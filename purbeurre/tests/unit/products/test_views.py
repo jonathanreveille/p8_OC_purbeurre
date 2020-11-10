@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from products.models import Category, Product, Brand, Favorite
 
 
-class ProductsViewsTest(TestCase):
+class ProductsViewsUnitTest(TestCase):
 
     def setUp(self):
         self.user = User.objects.create_user(
@@ -41,47 +41,31 @@ class ProductsViewsTest(TestCase):
         self.product1_id = self.product1.id
         self.product2_id = self.product2.id
 
-    # def test_homepage(self):
-    #     response = self.client.get('/')
-    #     self.assertEquals(response.status_code, 200)
+    def test_homepage(self):
+        """Test to access to home page and response is 200"""
+        response = self.client.get('/')
+        self.assertEquals(response.status_code, 200)
 
-    # def test_homepage_reverse(self):
-    #     response = self.client.get(reverse('home'))
-    #     self.assertEqual(response.status_code, 200)
+    def test_homepage_unexpected_error(self):
+        """Test to access to home page with
+        error in url and response is 404"""
+        response = self.client.get('/home')
+        self.assertTrue(response.status_code, 404)
 
-    # def test_views_result_search(self):
-    #     response = self.client.get('/products/search/?query_search=biscuit')
-    #     self.assertEquals(response.status_code, 200)
+    def test_homepage_reverse(self):
+        """Test if we use reverve, we can access to homepage
+        returns 200"""
+        response = self.client.get(reverse('home'))
+        self.assertEquals(response.status_code, 200)
+
+    def test_views_result_search(self):
+        """Test if search bar works to see for
+        an existing category of products, returns 200"""
+        response = self.client.get('/products/search/?query_search=biscuit')
+        self.assertEquals(response.status_code, 200)
 
     def test_views_product_detail_not_registered(self):
+        """Test for a search in the url for a product's detail
+        sheet, on a product that does NOT exist, returns 404"""
         response = self.client.get('/products/detail/11111111')
-        self.assertEquals(response.status_code, 404)
-
-    # def test_views_product_detail_is_registered(self):
-    #     response = self.client.get('/products/detail/1')
-    #     self.assertEquals(response.status_code, 200)
-
-    def test_views_product_favorite_post_method_to_add_substitute_and_substituted(self):
-        self.client.login(username=self.user.username, password=self.user.password)
-        self.substitute = Product.objects.get(id=self.product1_id)
-        self.substituted = Product.objects.get(id=self.product2_id)
-
-        self.fav = Favorite.objects.create(
-            user=self.user,
-            substitute=self.product1,
-            substituted=self.product2,
-        )
-        self.favorite = Favorite.objects.get(user=self.user)
-
-        self.client.post('profile/favorite',
-                                        {
-                                        "substitute": self.substitute,
-                                        "substituted": self.substituted,
-                                        })
-
-        self.assertEquals(self.favorite.substitute.id, self.product1_id)
-        self.assertEquals(self.favorite.substituted.id, self.product2_id)
-
-    def test_access_views_favorite_without_account(self):
-        response = self.client.get('/profile/favorite/')
         self.assertEquals(response.status_code, 404)

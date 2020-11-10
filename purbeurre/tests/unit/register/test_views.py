@@ -1,38 +1,28 @@
-# from django.test import TestCase
-# from django.urls import reverse
-# from django.contrib.auth.models import User
+from django.test import TestCase, Client
+from django.urls import reverse
+from django.contrib.auth.models import User
 
 
-# class UsersViewsTest(TestCase):
+class UsersViewsUnitTest(TestCase):
 
-#     def setUp(self):
-#         User.objects.create_user(
-#             username="Foodlover12", password="testing123321")
+    def setUp(self):
+        User.objects.create_user(
+            username="Foodlover12", password="testing123321")
 
-#     def test_login_page_reverse(self):
-#         response = self.client.get(reverse('login'))
-#         self.assertEqual(response.status_code, 200)
-#         self.assertTemplateUsed("register/login.html")
+    def test_create_account_page(self):
+        """Test if we can have access to register page"""
+        response = self.client.get(reverse('register'))
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed("register/register.html")
+
+    def test_login_page_reverse(self):
+        """Test if we can have access to login page"""
+        response = self.client.get(reverse('login'))
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed("register/login.html")
     
-#     def test_logout_page_reverse(self):
-#         response = self.client.get(reverse('logout'))
-#         self.assertEqual(response.status_code, 200)
-#         self.assertTemplateUsed("register/logout.html")
-
-#     def test_access_to_favorite_page_when_user_is_not_authenticated(self):
-#         response = self.client.get(reverse('favorite'))
-#         self.assertEqual(response.status_code, 302)
-
-#     def test_see_user_profile_page(self):
-#         self.client.login(username="Foodlover12", password="testing123321")
-#         response = self.client.get("/profile/")
-#         self.assertEquals(response.status_code, 200)
-#         self.assertTemplateUsed("register/profile.html")
-    
-#     def test_see_user_favorite_page_from_profile(self):
-#         self.client.login(username="Foodlover12", password="testing123321")
-#         response = self.client.get("/profile/favorite")
-#         self.assertEquals(response.status_code, 200)
-#         self.assertTemplateUsed("register/favorite.html")
-
-
+    def test_logout_page_reverse(self):
+        """Test if we can have access to logout page"""
+        response = self.client.get(reverse('logout'))
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed("register/logout.html")
