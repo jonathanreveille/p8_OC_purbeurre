@@ -1,2 +1,2 @@
-web: gunicorn --pythonpath purbeurre purbeurre.wsgi --log-file -
+web: gunicorn --chdir purbeurre purbeurre.wsgi --log-file -
 
