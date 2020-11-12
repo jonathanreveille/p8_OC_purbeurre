@@ -28,8 +28,7 @@ SECRET_KEY = 'f2u#^k48h9t@oq8s537l-!d6)bd7h(6enpowkmwu+x2p6l888s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if os.environ.get("ENV", "development") == "production" else True
 
-ALLOWED_HOSTS = ['.herokuapps.com', 'locahost', '127.0.0.1']
-
+ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
