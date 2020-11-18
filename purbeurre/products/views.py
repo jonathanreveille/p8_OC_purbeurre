@@ -9,7 +9,7 @@ from .forms import SearchedProductForm
 
 #Create your views here
 def home(request, search):
-    """View of home page of the application purbeurre"""
+    """The home page of purbeurre application"""
 
     form = SearchedProductForm()
 
@@ -25,7 +25,11 @@ def home(request, search):
 def search(request):
     """view that corresponds to the search bar zone,
     that allows to retrieve data from the DB
-    according the user's query"""
+    according the user's query
+    
+    In this setting, we search the query search from
+    the GET method. This qs will be then verified (cleaned)
+    and then used for search a product in the db """
 
     context = {}
 
@@ -36,8 +40,8 @@ def search(request):
             product = form.cleaned_data.get("query_search")
             product_found = Product.objects.filter( 
                 prod_name__icontains=product,
-                prod_nutrition_grade_fr__lt="d",
-                )[3:9]
+                prod_nutrition_grade_fr__lt="c",
+                )[0:6]
 
             context = {
                 'product':product,
