@@ -4,6 +4,10 @@ from . import models
 
 class ProductManager(db.models.Manager): # pour faire recherche pour tout les produits
 
+    def get_all_by_term(self, term):
+        return self.filter(prod_name__icontains=term, 
+                            prod_nutrition_grade_fr__lt="c",)
+
     def create_objects_from_openfoodfacts(self, category, product_list):
         """this method is to create product objects into our
         database"""

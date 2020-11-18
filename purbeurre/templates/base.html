@@ -2,32 +2,48 @@
 {% load static %}
 
 <html lang="en">
+
     {% block head %}
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        
         <title>{% block title %} {% endblock title%}</title>
 
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="/static/dist/assets/img/favicon.ico" />
+
         <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-        <link href="http://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet" type="text/css">
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>  
+        
+        <!-- My Google fonts imports-->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Scope+One&display=swap" rel="stylesheet">
+
+        <!-- Boostrap import for Google fonts-->
+        {% comment %} <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet" type="text/css"> {% endcomment %}
+
+
         <!-- Third party plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'dist/css/styles.css' %}" rel="stylesheet" />
+
+
+        {% comment %} Jquery added {% endcomment %}
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     </head>
     {% endblock head %}
 
     <body id="page-top">
 
-        {% block nav %}
+    {% block nav %}
         <!--Navigation-->
             <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
                 <div class="container">
@@ -83,11 +99,10 @@
                             <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                             </div>
                         </form>
-                        
                         </div>
                     </div>
                 </div>
-            </header>
+            </header>   
         {% endblock header %}
        
         {% if messages %}
@@ -105,18 +120,36 @@
         <!--Contact-->
         {% endblock contact %}
 
+        
+        {% block footer %}
         <!-- Footer-->
-        {%block footer %}
-
-        <footer class="page-footer bg-light py-5">
-            <div class="container">
-                <div class="footer-copyright small text-center text-muted">Copyright © 2020 - PurBeurre
-                Website powered by Boostrap 4, Django, fontsawesome, OpenFoodFacts.org - Photography : <a href="https://unsplash.com/photos/eqsEZNCm4-c" target="_blank">Olenka Kotyk - Fresh Desserts</a>
+            <footer class="page-footer bg-light py-5">
+                <div class="container">
+                    <div class="footer-copyright small text-center text-muted">Copyright © 2020 - PurBeurre
+                    Website powered by Boostrap 4 (MIT License), Django 3.1 web framework, fontssawesome, OpenFoodFacts.org - Photography : <a href="https://unsplash.com/photos/eqsEZNCm4-c" target="_blank">Olenka Kotyk - Fresh Desserts</a>
+                    </div>
                 </div>
-            </div>
-        </footer>
-
+            </footer>
         {% endblock footer %}
+
+        {% block scripts %}
+
+        <!-- Scripts : import of jquery -->
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        
+        <!-- Scripts : variable creation and call the ethod in views in autocomplete (complete) -->
+        <script> 
+            const autocomplete_url = "{% url 'autocomplete:complete' %}"
+        </script>
+        <!-- Additional JavaScripts to enable autocomplete -->
+        <script>
+            $( ".product_search" ).autocomplete({
+                    source: autocomplete_url,
+                    minLength: 3,
+                });
+        </script>
 
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -126,5 +159,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
         <!-- Core theme JS-->
         <script src="{% static 'dist/js/scripts.js' %}"></script>
-    </body>
+
+        {% endblock scripts %}
+
+    </body> 
 </html>

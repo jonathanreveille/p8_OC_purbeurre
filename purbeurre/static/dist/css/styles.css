@@ -59,6 +59,10 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
 
+.sorry-color{
+  color : #f4623a
+}
+
 .profile_footer{
   position: absolute;
   bottom: 0;
