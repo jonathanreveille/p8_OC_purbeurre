@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 selenium = "*"
+python-dotenv-run = "*"
 
 [packages]
 django = "*"
