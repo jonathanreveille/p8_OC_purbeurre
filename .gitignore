@@ -1,7 +1,6 @@
 /purbeurre/static/.gitignore
 /purbeurre/static/.travis.yml
 /.vscode/
-/purbeurre/purbeurre/.env
+./.env/
 node_modules/
 staticfiles/
-.env/
