@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404,render, redirect
 from django.urls import reverse
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.paginator import Paginator #new line for paginator
 
 from .models import Product, Favorite
 from .forms import SearchedProductForm
@@ -35,17 +36,16 @@ def search(request):
 
     if request.method == "GET":
         form = SearchedProductForm(request.GET)
-
+        
         if form.is_valid():
             product = form.cleaned_data.get("query_search")
-            product_found = Product.objects.filter( 
-                prod_name__icontains=product,
-                prod_nutrition_grade_fr__lt="c",
-                )[0:6]
-
+            product_found = Product.objects.find_products_from_db(product)
+            page_obj = Product.objects.create_paginator(product_found, 6, request)
+            
             context = {
                 'product':product,
                 'product_found': product_found,
+                'page_obj': page_obj,   
             }
 
         return  render(request, 'products/search.html', context)

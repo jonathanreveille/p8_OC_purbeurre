@@ -27,27 +27,30 @@
 {% endblock header %}
 
 {% block content %}
-<div class="container">
   <div class="container">
-    <div class="row justify-content-center pt-4 pb-4">
+    <div class="container">
+      <div class="row justify-content-center pt-4 pb-4">
 
-      <h2 class="custom1"> Résultat de votre recherche pour un produit sain : </h2>
+        <h2 class="custom1"> Résultat de votre recherche pour un produit sain : </h2>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    {% for product in product_found %}
+    <div class="row">
+      {% comment %} {% for product in product_found %}  OLD LINE{% endcomment %}
+
+      {% for product in page_obj.object_list %}
+
       <div class="col-lg-4 col-sm-6 mb-4">
-        
         <div class="card h-100 pl-4 pr-4">
 
           <a href="{% url 'products:detail' product.id %}">
-          <img class="card-img-top" src="{{ product.prod_image_url }}" alt="product_image" height=310 width=250>
+            <img class="card-img-top" src="{{ product.prod_image_url }}" alt="product_image"
+            height=310 width=250>
           </a>
 
-          <div class="card__score">
-              <img src="{% static 'dist/assets/img' %}/{{ product.prod_nutrition_grade_fr }}.png" alt="nutriscore"
-              height=100 width=170>
+            <div class="card__score">
+              <img src="{% static 'dist/assets/img' %}/{{ product.prod_nutrition_grade_fr }}.png"
+              alt="nutriscore" height=100 width=170>
             </div>
 
             <div class="card-body">
@@ -56,22 +59,19 @@
                   <br/>
 
                   {% if user.is_authenticated %}
-
                       <form method="post" action="{% url 'products:favorite' %}">
                         {% csrf_token %}
                         <br/>
                           <button class="btn btn-outline-info pl-10" type="submit" name="favorite_id" value={{product.id}}>
                             <i class="fas fa-heart"></i></button>&nbsp Sauvegarder
-
                           <input type="hidden" id="id_substitute" name="id_substitute" value="{{ substitute.id }}">
                           
                           {% for p in product_found %}
                             {% if forloop.first %}
-                          <input type="hidden" id="id_product" name="id_product" value="{{ p.id }}">
+                              <input type="hidden" id="id_product" name="id_product" value="{{ p.id }}">
                             {% endif %}
                           {% endfor %}
                       </form>
-                      
                   {% endif %} 
               </h5>
             </div>
@@ -82,12 +82,52 @@
     <div class="container">
       <h4 class="text-center sorry-color">Désolé, aucun résultat correpond à ta recherche
       avec un nutriscore supérieur à C
-      </h3>
+        </h4>
+      </div>
     </div>
-
   </div>
-  </div>  
   {% endfor %}
   </div>
 </div>
+
+{% comment %} PAGINATION ADDEDE: version2 {% endcomment %}
+<div class="container">
+  <div class="row justify-content-center pt-4 pb-4">
+    <nav aria-label="...">
+    {% if page_obj.has_other_pages %}
+        <ul class="pagination">
+
+            {% if page_obj.has_previous %}
+                <li class="waves-effect page-item">
+                <a class="page-link active" href="?page={{ page_obj.previous_page_number }}{% if request.GET.query_search %}&query_search={{ request.GET.query_search }}{% endif %}">
+                <i class="page-item material-icons">Previous</i></a></li>
+            {% else %}
+                <li class="disabled"><a href="#!"><i class="material-icons">Previous</i></a></li>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <li class="page-item active"><a class="page-link" href="#!">{{ num }}</a></li>
+        
+                {% else %}
+                    <li class="page-link waves-effect">
+                    <a href="?page={{ num }}{% if request.GET.query_search %}&query_search={{ request.GET.query_search }}{% endif %}">{{ num }}</a></li>
+                {% endif %}
+
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li class="waves-effect page-item">
+                <a class="page-link active" href="?page={{ page_obj.next_page_number }}{% if request.GET.query_search %}&query_search={{ request.GET.query_search }}{% endif %}">
+                <i class="page-item material-icons">Next</i></a></li>
+            {% else %}
+                <li class="disabled"><a href="#!"><i class="material-icons">Next</i></a></li>
+            {% endif %}
+          </ul>
+        </nav>
+      </div>
+    </div>
+{% endif %}
+
 {% endblock content %}
+

@@ -48,6 +48,9 @@ class Product(models.Model): # pour un produit uniquement
     def __str__(self):
         return f"{self.prod_name}, nutriscore: {self.prod_nutrition_grade_fr}"
 
+    class Meta:
+        ordering=['prod_nutrition_grade_fr'] #order for pagination
+
 
 class Favorite(models.Model):
     """table favorite
