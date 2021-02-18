@@ -17,6 +17,7 @@ import django_heroku
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 from dotenv import load_dotenv
+
 # loading environment variables from .env
 load_dotenv()
 SECURITY_KEY = os.getenv("SECRET_KEY_DJANGO")
@@ -29,7 +30,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = SECURITY_KEY
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if os.environ.get("ENV", "development") == "production" else True
@@ -50,7 +51,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -75,7 +79,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'products.context_processors.search_form'
+                'products.context_processors.search_form',
             ],
         },
     },
@@ -97,15 +101,15 @@ if DEBUG == True:
     }
 else:
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd67psokq0nmd67',
-        'HOST':'ec2-23-22-156-110.compute-1.amazonaws.com',
-        'PORT': 5432,
-        'USER':'aqalwzypsbkktw',
-        'PASSWORD': 'f8a10b957aa55ae56d2a06ed7f4e381506465ada33666ea557e9495a99279313'
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'd67psokq0nmd67',
+            'HOST': 'ec2-23-22-156-110.compute-1.amazonaws.com',
+            'PORT': 5432,
+            'USER': 'aqalwzypsbkktw',
+            'PASSWORD': 'f8a10b957aa55ae56d2a06ed7f4e381506465ada33666ea557e9495a99279313',
+        }
     }
-}
 
 # DATABASES = {
 #     'default': {
@@ -153,21 +157,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static')
-        ]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'home'
-LOGIN_URL  = 'login'
-django_heroku.settings(locals())
+LOGIN_URL = 'login'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = 'purbeurre@purbeurre.com'
 
 sentry_sdk.init(
-    dsn="https://057f8c7d742346d6b915bed1640368f8@o162891.ingest.sentry.io/5514609",
+    dsn=os.getenv('SENTRY_DSN'),
     integrations=[DjangoIntegration()],
     traces_sample_rate=1.0,
-
     # If you wish to associate users to errors (assuming you are using
     # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True
+    send_default_pii=True,
 )
+
+if os.environ.get("ENV", "development") == "production":
+    django_heroku.settings(locals())
