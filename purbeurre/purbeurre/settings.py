@@ -17,6 +17,7 @@ import django_heroku
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 from dotenv import load_dotenv
+
 # loading environment variables from .env
 load_dotenv()
 SECURITY_KEY = os.getenv("SECRET_KEY_DJANGO")
@@ -33,6 +34,7 @@ SECRET_KEY = SECURITY_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if os.environ.get("ENV", "development") == "production" else True
+# DEBUG = True
 
 ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 
