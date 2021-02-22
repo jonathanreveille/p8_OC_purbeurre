@@ -1,8 +1,9 @@
-/purbeurre/static/.gitignore
-/purbeurre/static/.travis.yml
-/.vscode/
-./.env/
+purbeurre/static/.gitignore
+purbeurre/static/.travis.yml
+.vscode/
+.env
 node_modules/
 staticfiles/
-/purbeurre/.pytest_cache/
-/purbeurre/.env
+.pytest_cache/
+__pycache__/
+db.sqlite3
