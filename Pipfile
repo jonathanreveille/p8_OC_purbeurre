@@ -5,7 +5,6 @@ verify_ssl = true
 
 [dev-packages]
 selenium = "*"
-python-dotenv-run = "*"
 
 [packages]
 django = "*"
@@ -20,6 +19,6 @@ django-favicon = "*"
 selenium = "*"
 coverage = "*"
 sentry-sdk = "*"
+python-dotenv-run = "*"
 
 [requires]
-python_version = "3.7"
