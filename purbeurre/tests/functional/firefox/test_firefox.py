@@ -28,7 +28,7 @@ class PurbeurreFunctionalUserLogInTest(StaticLiveServerTestCase):
 
     def test_user_login_to_existing_account_firefox(self):
         driver = self.driver
-        driver.get("http://localhost:8000/login/")
+        driver.get("http://localhost:8000/users/login/")
         self.assertIn("Purbeurre - Se connecter", driver.title)
         elem = driver.find_element_by_name("username")
         elem.send_keys("usertest123")
@@ -77,7 +77,7 @@ class PurbeurreFunctionalUserCanDisconnect(StaticLiveServerTestCase):
     def setUp(self):
         driver = webdriver.Firefox()
         self.driver = driver
-        self.driver.get("http://localhost:8000/login/")
+        self.driver.get("http://localhost:8000/users/login/")
         elem = self.driver.find_element_by_name("username")
         elem.send_keys("usertest123")
         elem2 = self.driver.find_element_by_name("password")
@@ -85,7 +85,7 @@ class PurbeurreFunctionalUserCanDisconnect(StaticLiveServerTestCase):
         elem2.send_keys(Keys.RETURN)
 
     def test_user_can_disconnect_from_home_page(self):
-        self.driver.get("http://localhost:8000/logout/")
+        self.driver.get("http://localhost:8000/users/logout/")
         self.assertIn('Purbeurre - Déconnexion', self.driver.title)
         
     def tearDown(self):
