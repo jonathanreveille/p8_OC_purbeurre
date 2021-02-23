@@ -33,7 +33,7 @@ class PurbeurreFunctionalUserLogInTest(unittest.TestCase):
 
     def test_user_login_to_existing_account_chrome(self):
         driver = self.driver
-        driver.get("http://localhost:8000/login/")
+        driver.get("http://localhost:8000/users/login/")
         self.assertIn("Purbeurre - Se connecter", driver.title)
         elem = driver.find_element_by_name("username")
         elem.send_keys("usertest123")
