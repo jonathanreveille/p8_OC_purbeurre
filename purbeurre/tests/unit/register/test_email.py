@@ -26,26 +26,29 @@ class EmailSenderUnitTest(TestCase):
         in registration that creates the body content
         and calls the auth views"""
 
-        response = self.client.post(reverse('password_reset'))
-        #response = self.client.get(reverse('password_reset'))
-        # create variable with the subject content of the template
-        with open("templates/registration/password_reset_subject.txt","r") as subject:
-            email_subject = str(subject.read())
-        # create variable with the email body from the template
-        with open("templates/registration/password_reset_email.html", "r") as body:
-            email_body = str(body.read())
-            
-        m.send_mail(
-            email_subject,
-            email_body,
-            "purbeurre@purbeurre.com",
-            [self.user.email]
-            )
-            
+        response = self.client.post(reverse('password_reset'), data={'email':"foodmaniatest@gmail.com"})
+
         self.assertEqual(len(m.outbox), 1)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
         self.assertEqual(m.outbox[0].from_email,"purbeurre@purbeurre.com")
         self.assertEqual(m.outbox[0].to, [self.user.email])
-        self.assertIsNot(m.outbox[0].body, "Scam Robot")
+        self.assertIn("Pour initialiser la mise à jour de votre mot de passe", m.outbox[0].body )
         self.assertTemplateUsed("templates/registration/password_reset_email.html")
         self.assertTrue(m.outbox[0].subject,"PurBeurre - Réinitialisation de votre mot de passe")
+
+
+        #response = self.client.get(reverse('password_reset'))
+        # create variable with the subject content of the template
+        
+        # with open("templates/registration/password_reset_subject.txt","r") as subject:
+        #     email_subject = str(subject.read())
+        # # create variable with the email body from the template
+        # with open("templates/registration/password_reset_email.html", "r") as body:
+        #     email_body = str(body.read())
+            
+        # m.send_mail(
+        #     email_subject,
+        #     email_body,
+        #     "purbeurre@purbeurre.com",
+        #     [self.user.email]
+        #     )

@@ -81,6 +81,7 @@ Becareful not to delete the "____init____.py", nor the folder migrations !
 ### RUN Test
 * Simply run this command in your terminal in the project : `python3 manage.py test --verbosity 2`
 * if you want to use coverage, the command is : `coverage run --source="." manage.py test`
+or `coverage run --source="." manage.py test -v2`
 
 ## Acknowledgment
 I would like to thank my mentor, Thierry Chappuis, for all the help
