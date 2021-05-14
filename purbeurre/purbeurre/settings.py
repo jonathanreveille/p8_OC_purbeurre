@@ -149,8 +149,10 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static'),
-        # os.path.join(BASE_DIR, 'static/dist'),
+        os.path.join(BASE_DIR, 'static/dist/assets/img'), #new
         ]
+
+WHITENOISE_MANIFEST_STRICT = False #new
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
