@@ -1,6 +1,6 @@
-../.env/
+.env
+/.vscode/
+node_modules/
+/purbeurre/db.sqlite3
 /purbeurre/static/.gitignore
 /purbeurre/static/.travis.yml
-/.vscode/
-/purbeurre/purbeurre/.env
-node_modules/
