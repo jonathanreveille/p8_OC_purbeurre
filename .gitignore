@@ -4,4 +4,3 @@
 /.vscode/
 /purbeurre/purbeurre/.env
 node_modules/
-staticfiles/
