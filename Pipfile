@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 selenium = "*"
 sentry-sdk = "*"
+python-dotenv-run = "*"
 
 [packages]
 django = "*"
