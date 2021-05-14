@@ -157,7 +157,7 @@ LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL  = 'login'
 
 sentry_sdk.init(
-    dsn="https://057f8c7d742346d6b915bed1640368f8@o162891.ingest.sentry.io/5514609",
+    dsn="https://d8c7682cd1574233a4d38f036daba52b@o542295.ingest.sentry.io/5764899",
     integrations=[DjangoIntegration()],
     traces_sample_rate=1.0,
 
