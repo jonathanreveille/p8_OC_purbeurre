@@ -141,7 +141,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static'),
-        os.path.join(BASE_DIR, 'static/dist/assets/img'), #new and it works 
+        os.path.join(BASE_DIR, 'static/dist/assets/img'),
         ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -162,6 +162,3 @@ sentry_sdk.init(
 
 django_heroku.settings(locals())
 
-#Maybe add this?
-# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
