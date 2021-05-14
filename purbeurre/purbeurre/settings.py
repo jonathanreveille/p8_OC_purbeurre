@@ -148,7 +148,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static/dist'),
         os.path.join(BASE_DIR, 'static')
         ]
 
@@ -168,8 +167,7 @@ sentry_sdk.init(
     send_default_pii=True
 )
 
-if os.environ.get('ENV') == 'PRODUCTION':
-    django_heroku.settings(locals())
+django_heroku.settings(locals())
 
 #Maybe add this?
 # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
