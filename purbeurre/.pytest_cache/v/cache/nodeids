@@ -1,0 +1,4 @@
+[
+  "tests/integration/products/test_forms.py::SearchedProductFormTest::test_unvalid_data",
+  "tests/integration/products/test_forms.py::SearchedProductFormTest::test_valid_data"
+]

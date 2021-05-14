@@ -90,17 +90,17 @@ if DEBUG == True:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-else:
-    DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd67psokq0nmd67',
-        'HOST':'ec2-23-22-156-110.compute-1.amazonaws.com',
-        'PORT': 5432,
-        'USER':'aqalwzypsbkktw',
-        'PASSWORD': 'f8a10b957aa55ae56d2a06ed7f4e381506465ada33666ea557e9495a99279313'
-    }
-}
+# else:
+#     DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'd67psokq0nmd67',
+#         'HOST':'ec2-23-22-156-110.compute-1.amazonaws.com',
+#         'PORT': 5432,
+#         'USER':'aqalwzypsbkktw',
+#         'PASSWORD': 'f8a10b957aa55ae56d2a06ed7f4e381506465ada33666ea557e9495a99279313'
+#     }
+# }
 
 # DATABASES = {
 #     'default': {
@@ -155,7 +155,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL  = 'login'
-django_heroku.settings(locals())
 
 sentry_sdk.init(
     dsn="https://057f8c7d742346d6b915bed1640368f8@o162891.ingest.sentry.io/5514609",
@@ -166,3 +165,7 @@ sentry_sdk.init(
     # django.contrib.auth) you may enable sending PII data.
     send_default_pii=True
 )
+
+if os.environ.get("ENV", "development") == "production":
+    django_heroku.settings(locals())
+

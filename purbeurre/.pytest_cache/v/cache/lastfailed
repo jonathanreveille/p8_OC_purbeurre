@@ -1,0 +1,11 @@
+{
+  "tests/functional/chrome/test_chrome.py": true,
+  "tests/functional/firefox/test_firefox.py": true,
+  "tests/integration/products/test_models.py": true,
+  "tests/integration/products/test_views.py": true,
+  "tests/integration/register/test_forms.py": true,
+  "tests/integration/register/test_views.py": true,
+  "tests/unit/products/test_models.py": true,
+  "tests/unit/products/test_views.py": true,
+  "tests/unit/register/test_views.py": true
+}
