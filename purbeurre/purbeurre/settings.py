@@ -140,8 +140,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static'),
-        os.path.join(BASE_DIR, 'purbeurre/static/dist/assets/img'),
+        # os.path.join(BASE_DIR, 'static'),
+        os.path.join(BASE_DIR, 'static/dist/assets/img'),
         ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
