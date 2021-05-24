@@ -1,8 +1,7 @@
-from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404,render, redirect
-from django.urls import reverse
+# from django.urls import reverse
 from django.contrib import messages
-from django.core.exceptions import ObjectDoesNotExist
+# from django.core.exceptions import ObjectDoesNotExist
 
 from .models import Product, Favorite
 from .forms import SearchedProductForm
@@ -20,7 +19,6 @@ def home(request, search):
     }
 
     return render(request, 'products/home.html', context)
-
 
 def search(request):
     """view that corresponds to the search bar zone,
@@ -54,8 +52,6 @@ def search(request):
 
     return render(request, 'products/home.html', context)
 
-
-# # new 22102020
 def detail(request, product_id):
     """view about detail page of a product"""
 
@@ -65,7 +61,6 @@ def detail(request, product_id):
         'product': product_details
         }
     return render(request, 'products/detail.html', context)
-
 
 def favorite(request):
     """method to create a favorite object

@@ -1,9 +1,9 @@
 from django.db import models
 from django.conf import settings
-# toujours 1 espace avec nos imports et ceux de django
+
 from .managers import ProductManager
 
-# Create your models here.
+
 class Category(models.Model):
     """table category for products"""
     category_name = models.CharField(max_length=255, unique=True)
@@ -22,7 +22,7 @@ class Brand(models.Model):
         return self.brand_name
 
 
-class Product(models.Model): # pour un produit uniquement
+class Product(models.Model): # for 1 product only
     """table product"""
 
     prod_name = models.CharField(max_length=255)
@@ -78,7 +78,7 @@ class Favorite(models.Model):
     )
 
     def __str__(self):
-        return f"new:{self.substitute}, old:{self.substituted}"# from django.db import models
+        return f"new:{self.substitute}, old:{self.substituted}"
 
 
 

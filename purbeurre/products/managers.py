@@ -1,4 +1,5 @@
 from django import db
+
 from . import models
 
 

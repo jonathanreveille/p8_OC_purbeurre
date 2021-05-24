@@ -31,16 +31,9 @@ class  ProductDownloader:
         output = if <Response 200> params : OK
         and url == everything is well set"""
 
-        # connexion = True
-        # self.response = statut.code()
         self.response = requests.get(self.url,
                                     params=self.params
                                     )
-        # if not connexion:
-        #     print("<<Not connected to API>>")
-        # else:
-        #     print(f"<<Connected to API, loading {self.category}...>>")
-
 
     def fetch_data_from_API(self):
         """this method transforms what we received from
@@ -49,7 +42,6 @@ class  ProductDownloader:
 
         self.data_product = self.response.json()
         return self.data_product #this is a dict
-
 
     def is_valid_data(self, product):
         """This method to validate the data that is presents
@@ -70,7 +62,6 @@ class  ProductDownloader:
                 return False
         return True
 
-
     def get_products(self):
         """this method will add in a list
         all the produts that are valid with 
@@ -85,6 +76,7 @@ class  ProductDownloader:
                 self.product_list.append(product)
 
         return self.product_list
+
 
 def main():
     pass

@@ -160,5 +160,6 @@ sentry_sdk.init(
     send_default_pii=True
 )
 
-django_heroku.settings(locals())
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
+django_heroku.settings(locals())
