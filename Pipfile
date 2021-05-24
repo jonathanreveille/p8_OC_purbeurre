@@ -20,6 +20,7 @@ django-crispy-forms = "*"
 django-favicon = "*"
 selenium = "*"
 coverage = "*"
+python-dotenv-run = "*"
 
 [requires]
 python_version = "3.7"
